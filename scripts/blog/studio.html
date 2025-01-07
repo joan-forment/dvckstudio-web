@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Estudio del blog — DvckStudio</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+    <link rel="stylesheet" href="/css/globals.css" />
+    <!-- blog.css styles the article preview exactly like the live post. -->
+    <link rel="stylesheet" href="/css/blog.css" />
+    <link rel="stylesheet" href="/css/blog-viz.css" />
+    <style>
+      /* Local tool, not part of the site: styles live here with the page.
+         Same rules as the blog: white on orange, black only on white. */
+      :root {
+        --ink: #141414;
+        --muted: #5c5c5c;
+        --rule: #e6e2dc;
+        --soft: #f4f0ea;
+        --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+
+      body {
+        min-height: 100vh;
+        padding: clamp(1.25rem, 3vw, 2.5rem);
+        padding-bottom: 5rem;
+      }
+
+      p {
+        text-transform: none;
+        line-height: 1.4;
+      }
+
+      button,
+      a {
+        font: inherit;
+      }
+
+      .st-top {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 1rem 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .st-kicker,
+      .st-label {
+        font-size: 0.78rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .st-kicker {
+        margin-bottom: 0.6rem;
+      }
+
+      .st-top h1 {
+        font-size: clamp(4.5rem, 11vw, 10rem);
+      }
+
+      .st-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .st-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        min-height: 2.4rem;
+        padding: 0 1rem;
+        border: 1px solid var(--d);
+        border-radius: 999px;
+        font-size: 0.82rem;
+        font-weight: 500;
+      }
+
+      .st-dot {
+        width: 0.55rem;
+        height: 0.55rem;
+        border-radius: 50%;
+        background: #2fd27a;
+      }
+
+      .st-dot.is-off {
+        background: var(--black);
+      }
+
+      .st-banner {
+        margin-bottom: 1.5rem;
+        padding: 1rem 1.25rem;
+        border-radius: 1rem;
+        background: var(--black);
+        color: var(--d);
+        font-weight: 500;
+      }
+
+      .st-section {
+        margin-top: 3rem;
+      }
+
+      .st-section-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .st-section-head h2 {
+        font-size: clamp(3rem, 5vw, 4.5rem);
+      }
+
+      .st-note {
+        max-width: 44rem;
+        margin-top: 0.4rem;
+        font-weight: 500;
+      }
+
+      /* Buttons */
+      .st-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        min-height: 2.75rem;
+        padding: 0 1.2rem;
+        border: 1px solid var(--ink);
+        border-radius: 999px;
+        background: transparent;
+        color: var(--ink);
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+          background-color 0.25s ease,
+          color 0.25s ease;
+      }
+
+      .st-btn:hover:not(:disabled) {
+        background: var(--soft);
+      }
+
+      .st-btn--primary {
+        border-color: var(--l);
+        background: var(--l);
+        color: var(--d);
+      }
+
+      .st-btn--primary:hover:not(:disabled) {
+        border-color: var(--black);
+        background: var(--black);
+      }
+
+      .st-btn--light {
+        border-color: var(--d);
+        color: var(--d);
+      }
+
+      .st-btn--light:hover:not(:disabled) {
+        background: var(--d);
+        color: var(--black);
+      }
+
+      .st-btn--quiet {
+        border-color: var(--rule);
+        color: var(--muted);
+      }
+
+      .st-btn:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+
+      /* Cards */
+      .st-card {
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+        padding: clamp(1.25rem, 2vw, 1.75rem);
+        border-radius: 1.25rem;
+        background: var(--d);
+        color: var(--ink);
+      }
+
+      .st-card-top {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem 0.75rem;
+      }
+
+      .st-chip {
+        display: inline-flex;
+        align-items: center;
+        min-height: 1.6rem;
+        padding: 0 0.7rem;
+        border-radius: 999px;
+        background: var(--l);
+        color: var(--d);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .st-chip--outline {
+        border: 1px solid var(--ink);
+        background: transparent;
+        color: var(--ink);
+      }
+
+      .st-chip--dark {
+        background: var(--black);
+      }
+
+      .st-card h3 {
+        font-size: clamp(2.2rem, 2.8vw, 3rem);
+        line-height: 0.9;
+      }
+
+      .st-muted {
+        color: var(--muted);
+        font-size: 0.95rem;
+        font-weight: 400;
+      }
+
+      .st-sources {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        font-size: 0.82rem;
+      }
+
+      .st-sources a {
+        color: var(--ink);
+        text-decoration: underline;
+        text-decoration-color: var(--l);
+        text-underline-offset: 0.2em;
+        overflow-wrap: anywhere;
+      }
+
+      .st-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: auto;
+        padding-top: 0.4rem;
+      }
+
+      .st-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+        gap: 1rem;
+        list-style: none;
+      }
+
+      /* Job being prepared */
+      .st-job {
+        gap: 1.25rem;
+      }
+
+      .st-steps {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.5rem;
+        list-style: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+
+      .st-steps li {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        color: var(--muted);
+      }
+
+      .st-steps li.is-done,
+      .st-steps li.is-active {
+        color: var(--ink);
+      }
+
+      .st-steps li::before {
+        content: "";
+        width: 0.95rem;
+        height: 0.95rem;
+        border: 2px solid var(--rule);
+        border-radius: 50%;
+      }
+
+      .st-steps li.is-done::before {
+        border-color: var(--l);
+        background: var(--l);
+      }
+
+      .st-steps li.is-active::before {
+        border-color: var(--l) var(--rule) var(--rule);
+        animation: st-spin 0.8s linear infinite;
+      }
+
+      .st-covers {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.75rem;
+      }
+
+      .st-cover {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 16 / 9;
+        padding: 0;
+        border: 3px solid transparent;
+        border-radius: 0.9rem;
+        background: var(--soft);
+        cursor: pointer;
+      }
+
+      .st-cover img {
+        display: block;
+      }
+
+      .st-cover[aria-pressed="true"] {
+        border-color: var(--l);
+        box-shadow: 0 0 0 3px var(--d), 0 0 0 5px var(--l);
+      }
+
+      .st-cover[aria-pressed="true"]::after {
+        content: "✓";
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        display: grid;
+        place-items: center;
+        width: 1.9rem;
+        height: 1.9rem;
+        border-radius: 50%;
+        background: var(--l);
+        color: var(--d);
+        font-weight: 700;
+      }
+
+      .st-cover--loading,
+      .st-cover--error {
+        display: grid;
+        place-items: center;
+        cursor: default;
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      /* Shimmer while ComfyUI renders. */
+      .st-cover--loading {
+        background: linear-gradient(100deg, var(--soft) 30%, #fff 50%, var(--soft) 70%) 0 0 / 250% 100%;
+        animation: st-shimmer 1.4s linear infinite;
+      }
+
+      .st-cover--loading span::before {
+        content: "";
+        display: block;
+        width: 1.6rem;
+        height: 1.6rem;
+        margin: 0 auto 0.6rem;
+        border: 3px solid var(--rule);
+        border-top-color: var(--l);
+        border-radius: 50%;
+        animation: st-spin 0.8s linear infinite;
+      }
+
+      .st-log summary {
+        color: var(--muted);
+        font-size: 0.8rem;
+        cursor: pointer;
+      }
+
+      .st-log ol {
+        margin-top: 0.5rem;
+        padding: 0.8rem 1rem;
+        border-radius: 0.75rem;
+        background: var(--soft);
+        font-family: ui-monospace, Consolas, monospace;
+        font-size: 0.78rem;
+        line-height: 1.6;
+        list-style: none;
+        user-select: text;
+      }
+
+      .st-loading {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem;
+        border: 1px dashed var(--d);
+        border-radius: 1.25rem;
+        font-weight: 500;
+      }
+
+      .st-loading::before {
+        content: "";
+        flex: none;
+        width: 1.6rem;
+        height: 1.6rem;
+        border: 3px solid rgba(255, 255, 255, 0.4);
+        border-top-color: var(--d);
+        border-radius: 50%;
+        animation: st-spin 0.8s linear infinite;
+      }
+
+      .st-drafts summary {
+        cursor: pointer;
+        font-weight: 500;
+      }
+
+      .st-drafts .st-grid {
+        margin-top: 1rem;
+      }
+
+      .st-drafts .st-card h3 {
+        font-size: 1.9rem;
+      }
+
+      .st-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding: 1rem 1.25rem;
+        border-radius: 1rem;
+        background: var(--d);
+        color: var(--ink);
+      }
+
+      .st-row + .st-row {
+        margin-top: 0.5rem;
+      }
+
+      .st-feed {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 5;
+        max-width: min(28rem, calc(100vw - 2rem));
+        padding: 0.8rem 1rem;
+        border-radius: 1rem;
+        background: var(--black);
+        color: var(--d);
+        font-size: 0.8rem;
+        line-height: 1.5;
+      }
+
+      .st-feed:empty {
+        display: none;
+      }
+
+      /* Article preview */
+      .st-preview {
+        width: min(60rem, calc(100vw - 2rem));
+        max-height: calc(100vh - 2rem);
+        margin: auto;
+        padding: 0;
+        border: 0;
+        border-radius: 1.25rem;
+        background: var(--d);
+        color: var(--ink);
+      }
+
+      .st-preview::backdrop {
+        background: rgba(8, 8, 8, 0.6);
+      }
+
+      .st-preview-head {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--rule);
+        background: var(--d);
+      }
+
+      .st-preview .post::before {
+        display: none;
+      }
+
+      .st-preview .post {
+        background: none;
+      }
+
+      .st-preview-body {
+        padding: 1.5rem clamp(1.25rem, 4vw, 3rem) 3rem;
+      }
+
+      .st-preview-body h1 {
+        margin-bottom: 1rem;
+        font-size: clamp(3rem, 6vw, 5rem);
+        color: var(--black);
+      }
+
+      .st-review {
+        margin: 1.25rem 0 2rem;
+        padding: 1rem 1.25rem;
+        border-left: 0.3rem solid var(--l);
+        border-radius: 0.5rem;
+        background: var(--soft);
+        font-size: 0.95rem;
+      }
+
+      @keyframes st-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes st-shimmer {
+        to {
+          background-position: -250% 0;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .st-covers {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .st-steps li.is-active::before,
+        .st-cover--loading,
+        .st-cover--loading span::before,
+        .st-loading::before {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="st-top">
+      <div>
+        <p class="st-kicker">DvckStudio · Blog</p>
+        <h1>Estudio</h1>
+      </div>
+      <div class="st-pills" id="pills"></div>
+    </header>
+
+    <div id="banner"></div>
+    <main>
+      <section class="st-section" id="jobs" hidden></section>
+      <section class="st-section" id="schedule" hidden></section>
+      <section class="st-section" id="proposals"></section>
+      <section class="st-section" id="drafts"></section>
+    </main>
+    <div class="st-feed" id="feed" role="status" aria-live="polite"></div>
+
+    <dialog class="st-preview" id="preview" aria-labelledby="preview-title">
+      <div class="st-preview-head">
+        <p class="st-label" id="preview-meta">Vista previa</p>
+        <button class="st-btn st-btn--quiet" type="button" id="preview-close">Cerrar</button>
+      </div>
+      <div class="post">
+        <div class="st-preview-body post-body" id="preview-body"></div>
+      </div>
+    </dialog>
+
+    <script type="module">
+      // Same component script as the live post: charts animate, quizzes and tabs work.
+      import { initViz } from "/js/blog-viz.js";
+      const $ = (id) => document.getElementById(id);
+      const esc = (value = "") =>
+        String(value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+
+      // Remembers the folded drafts list across reloads; storage may be blocked.
+      const draftsOpen = () => {
+        try {
+          return Boolean(sessionStorage.getItem("draftsOpen"));
+        } catch {
+          return false;
+        }
+      };
+
+      // Cover picked on this page before approving (slug -> cover id).
+      const picked = {};
+      let state = null;
+      let lastJson = "";
+
+      // "2026-09-25" -> "vie, 25 sept"
+      const day = (date) =>
+        new Intl.DateTimeFormat("es-ES", { weekday: "short", day: "numeric", month: "short" })
+          .format(new Date(`${date}T12:00:00`))
+          .replace(/\./g, "");
+      const when = (stamp) => (stamp ? `${day(stamp.slice(0, 10))}, ${stamp.slice(11)}` : "");
+
+      async function post(action, body = {}) {
+        const res = await fetch(`/api/${action}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-Studio": "1" },
+          body: JSON.stringify(body),
+        });
+        const data = await res.json();
+        if (!res.ok) alert(data.error || "Algo ha fallado.");
+        await refresh(true);
+        return data;
+      }
+
+      const STATUS = {
+        writing: "Escribiendo el artículo…",
+        reviewing: "Comprobando los datos…",
+        ready: "Listo para revisar",
+        scheduled: "Programado",
+        publishing: "Publicando…",
+        published: "Publicado",
+        error: "Error",
+      };
+
+      function steps(job) {
+        const order = ["writing", "reviewing", "ready", "scheduled", "publishing", "published"];
+        const at = order.indexOf(job.status);
+        const coversReady = job.covers.some((c) => c.status === "ready");
+        const coversBusy = job.covers.some((c) => c.status === "pending");
+        const item = (label, done, active) => `<li class="${done ? "is-done" : active ? "is-active" : ""}">${label}</li>`;
+        return `<ol class="st-steps">
+          ${item("Artículo", at >= 2, at >= 0 && at < 2 && job.status !== "error")}
+          ${item("Portadas", coversReady && !coversBusy, coversBusy)}
+          ${item(job.status === "published" ? "Publicado" : "Publicar", job.status === "published", ["scheduled", "publishing"].includes(job.status))}
+        </ol>`;
+      }
+
+      function cover(job, c) {
+        if (c.status === "pending")
+          return `<div class="st-cover st-cover--loading"><span>Cargando miniatura…</span></div>`;
+        if (c.status === "error") return `<div class="st-cover st-cover--error">No se pudo generar</div>`;
+        const selected = (picked[job.slug] || job.chosenCover) === c.id;
+        const locked = ["scheduled", "publishing", "published"].includes(job.status);
+        return `<button class="st-cover" type="button" data-pick="${esc(job.slug)}" data-cover="${esc(c.id)}"
+          aria-pressed="${selected}" ${locked ? "disabled" : ""} title="${esc(c.alt)}">
+          <img src="/covers/${esc(job.slug)}/${esc(c.id)}.jpg?v=${encodeURIComponent(job.createdAt)}" alt="${esc(c.alt)}" loading="lazy" />
+        </button>`;
+      }
+
+      function jobCard(job) {
+        const chosen = picked[job.slug] || job.chosenCover;
+        const coversBusy = job.covers.some((c) => c.status === "pending");
+        const ready = job.status === "ready";
+        const canRead = ["ready", "scheduled", "publishing", "published"].includes(job.status);
+        const badge = job.status === "scheduled" ? `Programado · ${when(job.scheduledAt)}` : STATUS[job.status];
+        const actions = [];
+        if (canRead) actions.push(`<button class="st-btn" type="button" data-read="${esc(job.slug)}">Leer artículo</button>`);
+        if (!["publishing", "published", "scheduled"].includes(job.status))
+          actions.push(`<button class="st-btn" type="button" data-covers="${esc(job.slug)}" ${coversBusy || !state.comfy ? "disabled" : ""}>Otras 3 portadas</button>`);
+        if (ready) {
+          const disabled = !chosen || state.publishing ? "disabled" : "";
+          actions.push(`<button class="st-btn st-btn--primary" type="button" data-approve="${esc(job.slug)}" ${disabled}>Programar · ${esc(when(state.nextSlot))}</button>`);
+          actions.push(`<button class="st-btn" type="button" data-now="${esc(job.slug)}" ${disabled}>Publicar ahora</button>`);
+        }
+        if (job.status === "scheduled") actions.push(`<button class="st-btn" type="button" data-unschedule="${esc(job.slug)}">Cancelar programación</button>`);
+        if (job.status === "published") actions.push(`<a class="st-btn st-btn--primary" href="https://dvckstudio.com/blog/${esc(job.slug)}" target="_blank" rel="noopener">Ver en la web</a>`);
+        if (!["publishing"].includes(job.status))
+          actions.push(`<button class="st-btn st-btn--quiet" type="button" data-discard="${esc(job.slug)}">${job.status === "published" ? "Quitar de la lista" : "Descartar"}</button>`);
+
+        const hint = ready && !chosen ? `<p class="st-muted">Elige una portada para poder publicar.</p>` : "";
+        return `<article class="st-card st-job">
+          <div class="st-card-top">
+            <span class="st-chip">${esc(state.categories[job.category] || job.category)}</span>
+            <span class="st-chip ${job.status === "error" ? "st-chip--dark" : "st-chip--outline"}">${esc(badge)}</span>
+          </div>
+          <h3>${esc(job.title)}</h3>
+          ${job.description ? `<p class="st-muted">${esc(job.description)}</p>` : ""}
+          ${steps(job)}
+          <div class="st-covers">${job.covers.map((c) => cover(job, c)).join("") || `<div class="st-cover st-cover--loading"><span>Cargando miniatura…</span></div>`}</div>
+          ${hint}
+          <div class="st-actions">${actions.join("")}</div>
+          ${job.log?.length ? `<details class="st-log"><summary>Registro</summary><ol>${job.log.map((l) => `<li>${esc(l)}</li>`).join("")}</ol></details>` : ""}
+        </article>`;
+      }
+
+      function proposalCard(p, index, date) {
+        const busy = state.jobs.some((j) => j.slug === p.slug);
+        return `<li class="st-card">
+          <div class="st-card-top">
+            <span class="st-chip">${esc(state.categories[p.category] || p.category)}</span>
+            <span class="st-chip st-chip--outline">${p.kind === "guia" ? "Guía" : "Actualidad"}</span>
+          </div>
+          <h3>${esc(p.title)}</h3>
+          <p>${esc(p.angle)}</p>
+          <p class="st-muted">${esc(p.why)}</p>
+          ${
+            p.sources?.length
+              ? `<div class="st-sources">${p.sources
+                  .map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}${s.date ? ` · ${esc(s.date)}` : ""}</a>`)
+                  .join("")}</div>`
+              : ""
+          }
+          <div class="st-actions">
+            <button class="st-btn st-btn--primary" type="button" data-choose="${index}" data-date="${esc(date)}" ${busy ? "disabled" : ""}>${busy ? "En preparación" : "Elegir este"}</button>
+          </div>
+        </li>`;
+      }
+
+      function render() {
+        $("pills").innerHTML = `
+          <span class="st-pill"><span class="st-dot ${state.comfy ? "" : "is-off"}"></span>ComfyUI ${state.comfy ? "conectado" : "cerrado"}</span>
+          <span class="st-pill">Próximo hueco: ${esc(when(state.nextSlot) || "—")}</span>`;
+
+        $("banner").innerHTML = state.comfy
+          ? ""
+          : `<p class="st-banner">ComfyUI está cerrado. Ábrelo (Comfy Desktop) para generar las portadas; lo demás funciona igual.</p>`;
+
+        const jobs = $("jobs");
+        jobs.hidden = !state.jobs.length;
+        jobs.innerHTML = `<div class="st-section-head"><h2>En preparación</h2></div>
+          <div class="st-grid" style="grid-template-columns: 1fr">${state.jobs.map(jobCard).join("")}</div>`;
+
+        const schedule = $("schedule");
+        schedule.hidden = !state.schedule.length;
+        const titleOf = (slug) => state.jobs.find((j) => j.slug === slug)?.title || slug;
+        schedule.innerHTML = `<div class="st-section-head"><h2>Programados</h2>
+            <button class="st-btn st-btn--light" type="button" data-release ${state.publishing ? "disabled" : ""}>Publicar lo que toca ya</button></div>
+          ${state.schedule.map((s) => `<div class="st-row"><strong>${esc(when(s.at))}</strong><span>${esc(titleOf(s.slug))}</span></div>`).join("")}`;
+
+        const proposals = state.proposals;
+        const isToday = proposals?.date === state.today;
+        const head = `<div class="st-section-head">
+            <div><h2>Propuestas${proposals ? ` · ${esc(day(proposals.date))}` : ""}</h2>
+            ${proposals && !isToday ? `<p class="st-note">Son de otro día. Busca las de hoy para tener novedades frescas.</p>` : ""}</div>
+            <button class="st-btn st-btn--light" type="button" data-propose ${state.proposing ? "disabled" : ""}>${proposals ? "Buscar 10 nuevas" : "Buscar las 10 de hoy"}</button>
+          </div>`;
+        const loading = state.proposing
+          ? `<p class="st-loading">Buscando las novedades de hoy en IA, programación y diseño… Tarda unos minutos.</p>`
+          : "";
+        const grid = proposals
+          ? `<ol class="st-grid">${proposals.proposals.map((p, i) => proposalCard(p, i, proposals.date)).join("")}</ol>`
+          : state.proposing
+            ? ""
+            : `<p class="st-note">Todavía no hay propuestas. Se generan solas a las 07:00 de lunes a viernes, o pulsa el botón.</p>`;
+        $("proposals").innerHTML = head + loading + (state.proposing && proposals ? "" : grid);
+
+        $("drafts").innerHTML = state.drafts.length
+          ? `<details class="st-drafts" ${draftsOpen() ? "open" : ""}>
+              <summary>Borradores ya escritos (${state.drafts.length})</summary>
+              <ul class="st-grid">${state.drafts
+                .map(
+                  (d) => `<li class="st-card">
+                    <div class="st-card-top"><span class="st-chip">${esc(state.categories[d.category] || d.category)}</span></div>
+                    <h3>${esc(d.title)}</h3>
+                    <p class="st-muted">${esc(d.description)}</p>
+                    <div class="st-actions"><button class="st-btn st-btn--primary" type="button" data-draft="${esc(d.slug)}">Elegir este</button></div>
+                  </li>`,
+                )
+                .join("")}</ul>
+            </details>`
+          : "";
+
+        $("feed").innerHTML = state.feed.slice(-4).map((l) => `<div>${esc(l)}</div>`).join("");
+      }
+
+      async function refresh(force = false) {
+        try {
+          const res = await fetch("/api/state");
+          const json = await res.text();
+          if (!force && json === lastJson) return;
+          lastJson = json;
+          state = JSON.parse(json);
+          render();
+        } catch {
+          $("banner").innerHTML = `<p class="st-banner">No hay conexión con el estudio. ¿Has cerrado la ventana de npm run blog:studio?</p>`;
+        }
+      }
+
+      async function openPreview(slug) {
+        const res = await fetch(`/api/preview/${encodeURIComponent(slug)}`);
+        const data = await res.json();
+        if (!res.ok) return alert(data.error);
+        $("preview-meta").textContent = `${data.words} palabras · ${data.minutes} min de lectura`;
+        const notes = [data.revision && `<p><strong>Nota del revisor:</strong> ${esc(data.revision)}</p>`, ...data.warnings.map((w) => `<p>⚠ ${esc(w)}</p>`)].filter(Boolean);
+        $("preview-body").innerHTML = `<h1 id="preview-title">${esc(data.title)}</h1>
+          <p class="st-muted">${esc(data.description)}</p>
+          ${notes.length ? `<div class="st-review">${notes.join("")}</div>` : ""}
+          ${data.html}`;
+        $("preview").showModal();
+        $("preview").scrollTop = 0;
+        initViz($("preview-body"));
+      }
+
+      document.addEventListener("click", async (event) => {
+        const el = event.target.closest("button, a");
+        if (!el) return;
+        const d = el.dataset;
+        if (d.pick) {
+          picked[d.pick] = d.cover;
+          return render();
+        }
+        if ("propose" in d) return post("propose");
+        if (d.choose) return post("choose", { date: d.date, index: Number(d.choose) });
+        if (d.draft) return post("choose", { draft: d.draft });
+        if (d.covers) return post("covers", { slug: d.covers });
+        if (d.read) return openPreview(d.read);
+        if (d.approve) return post("approve", { slug: d.approve, cover: picked[d.approve] || state.jobs.find((j) => j.slug === d.approve)?.chosenCover, when: "scheduled" });
+        if (d.now) {
+          if (!confirm("Se publicará ahora y se subirá la web a Hostinger. ¿Seguimos?")) return;
+          return post("approve", { slug: d.now, cover: picked[d.now] || state.jobs.find((j) => j.slug === d.now)?.chosenCover, when: "now" });
+        }
+        if (d.unschedule) return post("unschedule", { slug: d.unschedule });
+        if (d.discard) {
+          if (!confirm("¿Quitar este artículo de la lista? El borrador escrito se queda en content/blog/drafts.")) return;
+          return post("discard", { slug: d.discard });
+        }
+        if ("release" in d) return post("release");
+      });
+
+      document.addEventListener("toggle", (event) => {
+        if (event.target.classList?.contains("st-drafts")) {
+          try {
+            event.target.open ? sessionStorage.setItem("draftsOpen", "1") : sessionStorage.removeItem("draftsOpen");
+          } catch {}
+        }
+      }, true);
+
+      $("preview-close").addEventListener("click", () => $("preview").close());
+
+      refresh(true);
+      setInterval(refresh, 2000);
+    </script>
+  </body>
+</html>

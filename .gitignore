@@ -1,0 +1,11 @@
+﻿node_modules/
+dist/
+.DS_Store
+*.log
+.env
+.env.*
+.vercel/
+_source-assets/
+_borrador-textos-freelance/
+desktop-check.png
+mobile-check*.png

@@ -1,0 +1,1814 @@
+/* Blog: listing pages (/blog, /blog/categoria/*) and posts (/blog/*).
+   Orange stage with white type, white cards with orange accents. Black never
+   sits on orange (user decision): it is the ink on white surfaces and the
+   fill of the TL;DR, code and CTA blocks. Long-form reading happens on a
+   white sheet with black text. */
+
+.blog,
+.post {
+  --b-ink: #141414;
+  --b-muted: #5c5c5c;
+  --b-rule: #e6e2dc;
+  --b-soft: #f4f0ea;
+  --f-mono: ui-monospace, "SFMono-Regular", "Cascadia Code", Menlo, Consolas, monospace;
+  --b-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  display: block;
+  width: 100%;
+  background-color: var(--l);
+}
+
+.blog p,
+.post p {
+  text-transform: none;
+}
+
+/* nav.css styles every <nav> as the fixed site header. The blog's own
+   navigation landmarks (breadcrumb, filters, pagination) sit in the flow. */
+.blog-filters,
+.post-breadcrumb,
+.blog-pagination,
+.post-neighbours {
+  position: static;
+  z-index: auto;
+  width: auto;
+}
+
+.blog-filters,
+.post-breadcrumb {
+  display: block;
+  padding: 0;
+}
+
+/* Shared bits ----------------------------------------------------------- */
+
+.blog-kicker,
+.blog-section-title,
+.post-meta,
+.post-breadcrumb {
+  font-family: var(--f-nm);
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--d);
+}
+
+.blog-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.6rem;
+  padding: 0 0.7rem;
+  border-radius: 999px;
+  background: var(--l);
+  color: var(--d);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.blog-draft {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.6rem;
+  padding: 0 0.7rem;
+  border: 1px dashed currentColor;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.blog-arrow {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background: var(--l);
+  color: var(--d);
+  transition:
+    transform 0.4s var(--b-ease),
+    background-color 0.3s ease;
+}
+
+.blog-arrow svg {
+  width: 55%;
+  height: 55%;
+}
+
+/* Listing hero ---------------------------------------------------------- */
+
+.blog-hero {
+  padding-top: clamp(8rem, 22svh, 14rem);
+}
+
+.blog-hero-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-bottom: 0;
+}
+
+.blog-title {
+  max-width: 14ch;
+  font-size: clamp(4.5rem, 13vw, 14rem);
+  color: var(--d);
+}
+
+.blog-lead {
+  max-width: 40rem;
+  color: var(--d);
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.blog-filters ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  list-style: none;
+}
+
+.blog-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.6rem;
+  padding: 0 1.1rem;
+  border: 1px solid var(--d);
+  border-radius: 999px;
+  color: var(--d);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.blog-filter span {
+  opacity: 0.6;
+  font-size: 0.75rem;
+}
+
+.blog-filter:hover,
+.blog-filter:focus-visible,
+.blog-filter[aria-current="page"] {
+  background: var(--d);
+  color: var(--black);
+}
+
+.blog-filter[aria-current="page"] span {
+  color: var(--l);
+  opacity: 1;
+}
+
+/* Cards ----------------------------------------------------------------- */
+
+.blog-featured-card,
+.blog-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.25rem;
+  background: var(--d);
+  color: var(--black);
+  transition:
+    transform 0.45s var(--b-ease),
+    box-shadow 0.45s var(--b-ease);
+}
+
+.blog-featured-card:hover,
+.blog-card:hover,
+.blog-featured-card:focus-within,
+.blog-card:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 2rem 4rem -2rem rgba(0, 0, 0, 0.35);
+}
+
+.blog-featured-card:hover .blog-card-title a,
+.blog-card:hover .blog-card-title a,
+.blog-featured-card:hover .blog-featured-title a {
+  color: var(--l);
+}
+
+.blog-featured-card:hover .blog-arrow,
+.blog-card:hover .blog-arrow,
+.blog-featured-card:focus-within .blog-arrow,
+.blog-card:focus-within .blog-arrow {
+  background: var(--black);
+}
+
+.blog-featured-card:hover .blog-arrow,
+.blog-card:hover .blog-arrow,
+.blog-featured-card:focus-within .blog-arrow,
+.blog-card:focus-within .blog-arrow {
+  transform: translateX(0.3rem);
+}
+
+/* The title link covers the whole card: one tab stop, one accessible name. */
+.blog-featured-title a,
+.blog-card-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.blog-featured-title a::after,
+.blog-card-title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.blog-featured-title a:focus-visible,
+.blog-card-title a:focus-visible {
+  outline: none;
+}
+
+.blog-featured-title a:focus-visible::after,
+.blog-card-title a:focus-visible::after {
+  outline: 3px solid var(--d);
+  outline-offset: 3px;
+}
+
+.post-sheet .blog-card-title a:focus-visible::after {
+  outline-color: var(--black);
+}
+
+.blog-card-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 0.8rem;
+}
+
+.blog-card-meta {
+  color: var(--b-muted);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.blog-card-excerpt {
+  color: var(--b-muted);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.blog-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: auto;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.blog-featured {
+  padding-top: clamp(2.5rem, 6vw, 4.5rem);
+  padding-bottom: 0;
+}
+
+.blog-featured-card {
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  min-height: clamp(24rem, 55svh, 36rem);
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+}
+
+.blog-featured-title {
+  max-width: 18ch;
+  font-size: clamp(3.25rem, 7.5vw, 8rem);
+  line-height: 0.88;
+}
+
+.blog-featured-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem 3rem;
+  margin-top: auto;
+}
+
+.blog-featured-bottom .blog-card-excerpt {
+  max-width: 38rem;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+}
+
+.blog-featured-bottom .blog-card-cta {
+  margin-top: 0;
+}
+
+.blog-list {
+  padding-top: clamp(3rem, 7vw, 6rem);
+}
+
+.blog-section-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--f-nm);
+  font-size: 0.8rem;
+  line-height: 1.2;
+}
+
+.blog-section-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.35;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+  gap: clamp(1rem, 1.8vw, 1.5rem);
+  list-style: none;
+}
+
+.blog-card {
+  gap: 1.1rem;
+  min-height: 24rem;
+  padding: var(--card-pad);
+}
+
+.blog-card-title {
+  font-size: clamp(2.6rem, 3.3vw, 3.5rem);
+  line-height: 0.9;
+}
+
+.blog-empty {
+  color: var(--d);
+  font-size: 1.25rem;
+}
+
+/* Cover images ---------------------------------------------------------- */
+
+/* The image sits in a thin frame of the card itself: the negative margin
+   cancels most of the card padding, and the inner radius follows the outer
+   one so the corners stay concentric. */
+.blog-card {
+  --card-pad: clamp(1.4rem, 2vw, 1.9rem);
+  --card-frame: 0.55rem;
+}
+
+.blog-card-media,
+.blog-featured-media {
+  overflow: hidden;
+  background: var(--b-soft);
+}
+
+.blog-card-media {
+  margin: calc(var(--card-frame) - var(--card-pad)) calc(var(--card-frame) - var(--card-pad)) 0.2rem;
+  border-radius: calc(1.25rem - var(--card-frame));
+  aspect-ratio: 16 / 9;
+}
+
+.blog-card-media img,
+.blog-featured-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--b-ease);
+}
+
+.blog-card:hover .blog-card-media img,
+.blog-card:focus-within .blog-card-media img,
+.blog-featured-card:hover .blog-featured-media img,
+.blog-featured-card:focus-within .blog-featured-media img {
+  transform: scale(1.04);
+}
+
+.blog-featured-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+/* Featured post with a cover: text left, image right; stacked on phones. */
+.blog-featured-card--media {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 0;
+  padding: 0.6rem;
+}
+
+.blog-featured-card--media .blog-featured-text {
+  padding: clamp(1.25rem, 3.4vw, 2.9rem);
+}
+
+.blog-featured-card--media .blog-featured-title {
+  max-width: none;
+  font-size: clamp(3rem, 5.4vw, 6.5rem);
+}
+
+.blog-featured-media {
+  order: 2;
+  border-radius: calc(1.25rem - 0.6rem);
+}
+
+/* Post hero with cover: title on the left half, image bleeding off the right
+   half. The hero fills the first viewport so the white sheet starts right
+   below the fold. The figure comes first in the DOM so phones show it on top. */
+.post-hero.post-hero--cover {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 100svh;
+  padding-top: 0;
+}
+
+.post-hero--cover .post-cover {
+  grid-column: 2;
+  grid-row: 1;
+  position: relative;
+  overflow: hidden;
+  background: var(--b-soft);
+}
+
+.post-hero--cover .post-cover img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Doubled class: globals.css can land after this file in the bundle, and
+   its .container padding would win over a single class. */
+.post-hero--cover .post-hero-inner.container {
+  grid-column: 1;
+  grid-row: 1;
+  justify-content: center;
+  max-width: none;
+  margin: 0;
+  padding-top: clamp(8rem, 16svh, 11rem);
+  padding-right: clamp(2rem, 4vw, 4.5rem);
+}
+
+.post-hero--cover .post-title {
+  max-width: none;
+  font-size: clamp(3.5rem, 6.2vw, 7.5rem);
+}
+
+@media (max-width: 1000px) {
+  .post-hero.post-hero--cover {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    padding-top: 5.75rem;
+  }
+
+  .post-hero--cover .post-cover {
+    grid-column: 1;
+    aspect-ratio: 16 / 9;
+  }
+
+  .post-hero--cover .post-hero-inner.container {
+    grid-column: 1;
+    grid-row: 2;
+    justify-content: flex-start;
+    padding-top: clamp(2rem, 6vw, 3rem);
+  }
+
+  .post-hero--cover .post-title {
+    font-size: clamp(3.5rem, 10vw, 7.5rem);
+  }
+}
+
+@media (max-width: 700px) {
+  .post-hero--cover .post-title {
+    font-size: clamp(3.5rem, 16vw, 6rem);
+  }
+}
+
+@media (max-width: 1000px) {
+  .blog-featured-card--media {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .blog-featured-media {
+    order: 0;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* Pagination ------------------------------------------------------------ */
+
+.blog-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+.blog-pagination ol {
+  display: flex;
+  gap: 0.4rem;
+  list-style: none;
+}
+
+.blog-page {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0 0.8rem;
+  border: 1px solid var(--d);
+  border-radius: 999px;
+  color: var(--d);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.blog-page[aria-current="page"],
+a.blog-page:hover,
+a.blog-page:focus-visible {
+  background: var(--d);
+  color: var(--black);
+}
+
+.blog-list:last-child,
+.blog-featured:last-child {
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+/* Post hero ------------------------------------------------------------- */
+
+.post-hero {
+  padding-top: clamp(8rem, 20svh, 13rem);
+}
+
+.post-hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding-bottom: clamp(3rem, 7vw, 5rem);
+}
+
+.post-breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.post-breadcrumb li + li::before {
+  content: "/";
+  margin-right: 0.5rem;
+  opacity: 0.55;
+}
+
+.post-breadcrumb a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.45);
+  text-underline-offset: 0.25em;
+}
+
+.post-breadcrumb a:hover,
+.post-breadcrumb a:focus-visible {
+  text-decoration-color: currentColor;
+}
+
+.post-hero .blog-draft {
+  color: var(--d);
+}
+
+.post-title {
+  max-width: 20ch;
+  font-size: clamp(3.5rem, 8.5vw, 9.5rem);
+  line-height: 0.88;
+  color: var(--d);
+}
+
+.post-lead {
+  max-width: 44rem;
+  color: var(--d);
+  font-size: clamp(1.15rem, 1.7vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  list-style: none;
+}
+
+/* Trailing dots, so a wrapped line never starts with a separator. */
+.post-meta li:not(:last-child)::after {
+  content: "·";
+  margin-left: 1.25rem;
+}
+
+/* White reading sheet --------------------------------------------------- */
+
+.post-sheet {
+  position: relative;
+  padding-top: clamp(2.5rem, 6vw, 5rem);
+  background: var(--d);
+  color: var(--b-ink);
+}
+
+.post-layout {
+  display: grid;
+  grid-template-columns: minmax(13rem, 17rem) minmax(0, 46rem);
+  justify-content: center;
+  gap: clamp(3rem, 6vw, 6rem);
+  padding-top: 0;
+}
+
+.post-aside {
+  position: sticky;
+  top: 10.5rem;
+  align-self: start;
+  max-height: calc(100svh - 12rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.post-toc summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  list-style: none;
+  cursor: pointer;
+}
+
+.post-toc summary::-webkit-details-marker {
+  display: none;
+}
+
+.post-toc summary::after {
+  content: "+";
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.post-toc[open] summary::after {
+  content: "−";
+}
+
+.post-toc ol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  list-style: none;
+  counter-reset: toc;
+}
+
+.post-toc li {
+  counter-increment: toc;
+}
+
+.post-toc a {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.75rem 1fr;
+  padding: 0.45rem 0 0.45rem 0.9rem;
+  border-left: 2px solid var(--b-rule);
+  color: var(--b-muted);
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.3;
+  text-decoration: none;
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.post-toc a::before {
+  content: counter(toc, decimal-leading-zero);
+  font-size: 0.72rem;
+  line-height: 1.8;
+  opacity: 0.7;
+}
+
+.post-toc a:hover,
+.post-toc a:focus-visible,
+.post-toc a.is-active {
+  border-left-color: var(--l);
+  color: var(--b-ink);
+}
+
+.post-toc code {
+  font-family: inherit;
+}
+
+.post-share {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.post-share p {
+  width: 100%;
+  margin-bottom: 0.25rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.post-share a,
+.post-share button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0 0.9rem;
+  border: 1px solid var(--b-rule);
+  border-radius: 999px;
+  background: none;
+  color: var(--b-ink);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.post-share a:hover,
+.post-share a:focus-visible,
+.post-share button:hover,
+.post-share button:focus-visible {
+  border-color: var(--b-ink);
+  background: var(--b-soft);
+}
+
+/* Article typography ---------------------------------------------------- */
+
+.post-body {
+  min-width: 0;
+  color: var(--b-ink);
+  font-size: clamp(1.05rem, 1.1vw, 1.15rem);
+  font-weight: 400;
+  line-height: 1.7;
+  /* Readers copy quotes, commands and code: undo the global user-select. */
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.post-body * {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.post-body > * + * {
+  margin-top: 1.25em;
+}
+
+.post-body p,
+.post-body li {
+  font-size: inherit;
+  font-weight: 400;
+  line-height: 1.7;
+  text-transform: none;
+}
+
+.post-body h2 {
+  margin-top: 2.25em;
+  font-size: clamp(2.75rem, 4.2vw, 4.25rem);
+  line-height: 0.9;
+  color: var(--black);
+  scroll-margin-top: 7.5rem;
+}
+
+.post-body h2::before {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 0.3rem;
+  margin-bottom: 1rem;
+  border-radius: 999px;
+  background: var(--l);
+}
+
+.post-body h3 {
+  margin-top: 1.9em;
+  font-family: var(--f-nm);
+  font-size: 1.3em;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  scroll-margin-top: 7.5rem;
+}
+
+.post-body h4 {
+  margin-top: 1.6em;
+  font-family: var(--f-nm);
+  font-size: 1.05em;
+  font-weight: 700;
+  line-height: 1.3;
+  text-transform: none;
+}
+
+.post-body h2 + *,
+.post-body h3 + *,
+.post-body h4 + * {
+  margin-top: 0.75em;
+}
+
+.post-body a {
+  color: var(--black);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--l);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+  transition: background-color 0.2s ease;
+}
+
+.post-body a:hover,
+.post-body a:focus-visible {
+  background: rgba(255, 130, 34, 0.18);
+}
+
+.post-body strong {
+  font-weight: 700;
+}
+
+.post-body ul,
+.post-body ol {
+  padding-left: 1.3em;
+}
+
+.post-body li + li {
+  margin-top: 0.45em;
+}
+
+.post-body li::marker {
+  color: var(--l);
+  font-weight: 700;
+}
+
+.post-body ol li::marker {
+  color: var(--black);
+}
+
+.post-body blockquote {
+  padding: 0.25em 0 0.25em 1.25em;
+  border-left: 0.3rem solid var(--l);
+  font-size: 1.15em;
+  font-weight: 500;
+}
+
+.post-body hr {
+  height: 1px;
+  border: 0;
+  background: var(--b-rule);
+}
+
+.post-body img {
+  height: auto;
+  border-radius: 1rem;
+}
+
+.post-body :not(pre) > code {
+  padding: 0.12em 0.4em;
+  border-radius: 0.35em;
+  background: var(--b-soft);
+  font-family: var(--f-mono);
+  font-size: 0.88em;
+  overflow-wrap: anywhere;
+}
+
+.post-code {
+  position: relative;
+}
+
+.post-code pre {
+  overflow-x: auto;
+  padding: 2.4rem 1.5rem 1.4rem;
+  border-radius: 1rem;
+  background: var(--black);
+  color: #f3f3f3;
+  font-family: var(--f-mono);
+  font-size: 0.86rem;
+  line-height: 1.65;
+  tab-size: 2;
+}
+
+.post-code[data-lang]::before {
+  content: attr(data-lang);
+  position: absolute;
+  top: 0.9rem;
+  left: 1.5rem;
+  color: var(--l);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.post-code-copy {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.6rem;
+  min-height: 1.9rem;
+  padding: 0 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.post-code-copy:hover,
+.post-code-copy:focus-visible {
+  border-color: #fff;
+}
+
+.post-table {
+  overflow-x: auto;
+  border: 1px solid var(--b-rule);
+  border-radius: 1rem;
+}
+
+.post-table table {
+  width: 100%;
+  min-width: 32rem;
+  border-collapse: collapse;
+  font-size: 0.92em;
+  line-height: 1.45;
+}
+
+.post-table th,
+.post-table td {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--b-rule);
+  text-align: left;
+  vertical-align: top;
+}
+
+.post-table th {
+  background: var(--b-soft);
+  font-weight: 700;
+}
+
+.post-table tr:last-child td {
+  border-bottom: 0;
+}
+
+/* TL;DR box: black block with white text and orange accents, so black
+   never sits on orange. */
+.post-tldr {
+  padding: clamp(1.4rem, 3vw, 2rem);
+  border-radius: 1.25rem;
+  background: var(--black);
+  color: var(--d);
+}
+
+.post-body .post-tldr-kicker {
+  color: var(--l);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.post-body .post-tldr h2 {
+  margin-top: 0.4rem;
+  font-size: clamp(2.5rem, 3.4vw, 3.4rem);
+  color: var(--d);
+}
+
+.post-body .post-tldr h2::before {
+  display: none;
+}
+
+/* One numbered tile per idea: four things to look at, not a paragraph. */
+.post-body .post-tldr-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 0.75rem;
+  margin-top: 1.2rem;
+  padding: 0;
+  list-style: none;
+  counter-reset: tldr;
+}
+
+.post-body .post-tldr-list li {
+  counter-increment: tldr;
+  margin: 0;
+  padding: 1rem 1.1rem 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 0.9rem;
+  background: rgba(255, 255, 255, 0.07);
+  font-size: 0.96em;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.post-tldr-list li::before {
+  content: counter(tldr, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.6rem;
+  color: var(--l);
+  font-family: var(--f-h);
+  font-size: 2.4rem;
+  line-height: 0.85;
+}
+
+.post-body .post-tldr a {
+  color: var(--d);
+}
+
+.post-body .post-tldr :not(pre) > code {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.post-faq details {
+  border-bottom: 1px solid var(--b-rule);
+}
+
+.post-faq details:first-of-type {
+  margin-top: 1rem;
+  border-top: 1px solid var(--b-rule);
+}
+
+.post-faq summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  font-weight: 700;
+  line-height: 1.35;
+  list-style: none;
+  cursor: pointer;
+}
+
+.post-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.post-faq summary::after {
+  content: "+";
+  padding-bottom: 0.1rem;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--l);
+  color: var(--d);
+  font-weight: 500;
+  transition: transform 0.3s var(--b-ease);
+}
+
+.post-faq details[open] summary::after {
+  content: "−";
+  background: var(--black);
+}
+
+.post-faq details p {
+  padding-bottom: 1.2rem;
+  color: var(--b-muted);
+}
+
+.post-sources ol {
+  font-size: 0.9em;
+}
+
+.post-sources a {
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}
+
+/* After the article ----------------------------------------------------- */
+
+.post-cta {
+  padding-top: clamp(4rem, 9vw, 7rem);
+  padding-bottom: 0;
+}
+
+.post-cta-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: clamp(1.75rem, 5vw, 4.5rem);
+  border-radius: 1.5rem;
+  background: var(--black);
+  color: var(--d);
+}
+
+.post-cta-kicker {
+  color: var(--l);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+}
+
+.post-cta .post-cta-kicker {
+  text-transform: uppercase;
+}
+
+.post-cta-title {
+  font-size: clamp(3.5rem, 9vw, 9rem);
+  line-height: 0.88;
+}
+
+.post-cta-lead {
+  max-width: 40rem;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.post-cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  padding: 0.35rem 0.35rem 0.35rem 1.4rem;
+  border-radius: 999px;
+  background: var(--d);
+  color: var(--black);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.post-cta-button:hover,
+.post-cta-button:focus-visible {
+  background: var(--l);
+  color: var(--d);
+}
+
+.post-cta-button:hover .blog-arrow,
+.post-cta-button:focus-visible .blog-arrow {
+  background: var(--black);
+  color: var(--d);
+  transform: translateX(0.3rem);
+}
+
+.post-neighbours {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding-top: clamp(2rem, 5vw, 3rem);
+  padding-bottom: 0;
+}
+
+.post-neighbour {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem 1.4rem;
+  border: 1px solid var(--b-rule);
+  border-radius: 1rem;
+  color: var(--b-ink);
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.3;
+  text-decoration: none;
+  transition: border-color 0.25s ease;
+}
+
+.post-neighbour span {
+  color: var(--b-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.post-neighbour--next {
+  grid-column: 2;
+  text-align: right;
+}
+
+.post-neighbour:hover,
+.post-neighbour:focus-visible {
+  border-color: var(--b-ink);
+}
+
+.post-related {
+  padding-top: clamp(3.5rem, 8vw, 6rem);
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+.post-related .blog-section-title {
+  color: var(--b-ink);
+}
+
+/* White cards on the white sheet need their own surface. */
+.post-sheet .blog-card {
+  border: 1px solid var(--b-rule);
+  background: var(--b-soft);
+}
+
+/* Reading progress, driven by the page scroll where supported. Orange so it
+   shows on the black header bar that covers the top over the white sheet. */
+@supports (animation-timeline: scroll()) {
+  .post::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 103;
+    width: 100%;
+    height: 4px;
+    background: var(--l);
+    transform-origin: 0 50%;
+    animation: post-progress linear both;
+    animation-timeline: scroll(root);
+  }
+}
+
+@keyframes post-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+body:has(.menu-overlay.is-open) .post::before {
+  opacity: 0;
+}
+
+/* Small screens --------------------------------------------------------- */
+
+@media (max-width: 1000px) {
+  .post-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+
+  .post-aside {
+    position: static;
+    padding: 1.1rem 1.25rem;
+    border: 1px solid var(--b-rule);
+    border-radius: 1rem;
+  }
+
+  .post-toc summary {
+    margin-bottom: 0;
+  }
+
+  .post-toc[open] summary {
+    margin-bottom: 1rem;
+  }
+
+  /* Share links move to the end of the article on phones. */
+  .post-aside .post-share {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .blog .container,
+  .post .container {
+    padding-inline: 1.25rem;
+  }
+
+  .blog-title {
+    font-size: clamp(4rem, 21vw, 7rem);
+  }
+
+  .post-title {
+    max-width: none;
+    font-size: clamp(3.5rem, 16vw, 6rem);
+  }
+
+  .blog-card {
+    min-height: 0;
+  }
+
+  .blog-featured-card {
+    min-height: 0;
+  }
+
+  .post-neighbours {
+    grid-template-columns: 1fr;
+  }
+
+  .post-neighbour--next {
+    grid-column: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-featured-card,
+  .blog-card,
+  .blog-arrow,
+  .blog-card-media img,
+  .blog-featured-media img,
+  .post-faq summary::after {
+    transition: none;
+  }
+
+  .blog-card:hover .blog-card-media img,
+  .blog-card:focus-within .blog-card-media img,
+  .blog-featured-card:hover .blog-featured-media img,
+  .blog-featured-card:focus-within .blog-featured-media img {
+    transform: none;
+  }
+
+  .blog-featured-card:hover,
+  .blog-card:hover,
+  .blog-featured-card:focus-within,
+  .blog-card:focus-within {
+    transform: none;
+  }
+}
+
+/* Share row after the article: phones only (desktop has it in the aside). */
+.post-share--end {
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  .post-body .post-share--end {
+    display: flex;
+    margin-top: 3rem;
+  }
+}
+
+/* GFM task lists ("- [ ] item"): the checkbox is the bullet. */
+.post-body li:has(> input[type="checkbox"]) {
+  list-style: none;
+  margin-left: -1.3em;
+}
+
+.post-body li > input[type="checkbox"] {
+  margin-right: 0.6em;
+  accent-color: var(--l);
+  transform: translateY(0.1em);
+}
+
+/* Over the white reading sheet the fixed header would float on top of the
+   text, so it gets a solid black bar. nav.js adds .nav-on-light (see
+   setupNavTheme); on the orange hero the header stays transparent like on
+   every other page. The bar lives on body, not nav, so it sits under the
+   menu overlay (z-index 99): the bar stays put and the opening white menu
+   covers it, while the nav (100) and detached logo (101) stay above both.
+   Height = nav padding x2 + logo box, so the header row is centered in it. */
+.blog-page-body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: 7.5rem;
+  z-index: 98;
+  background: var(--black);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.blog-page-body.nav-on-light::before {
+  opacity: 1;
+}
+
+@media (max-width: 1000px) {
+  .blog-page-body::before {
+    height: 6.1rem;
+  }
+}
+
+/* Phones: the post meta stacks, so the separators go. */
+@media (max-width: 700px) {
+  .post-meta {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .post-meta li:not(:last-child)::after {
+    content: none;
+  }
+}
+
+/* Visual reading ---------------------------------------------------------
+   Built for readers who skim (and for readers with ADHD, who asked for it):
+   every section has something to look at, key phrases are highlighted,
+   lists read as steps and the reader always knows how much is left. */
+
+/* Reading time on cards. */
+.blog-chip {
+  gap: 0.35rem;
+}
+
+.blog-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 1.6rem;
+  padding: 0 0.7rem;
+  border-radius: 999px;
+  background: var(--b-soft);
+  color: var(--b-ink);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.post-sheet .blog-time {
+  background: var(--d);
+}
+
+.blog-time-dots {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.blog-time-dots i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--l);
+}
+
+/* Post hero meta as chips. A dark tint (never black text) keeps the white
+   type legible on the orange. */
+.post-meta {
+  gap: 0.5rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.post-meta li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.2rem;
+  padding: 0 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  background: rgba(8, 8, 8, 0.14);
+  font-size: 0.85rem;
+}
+
+.post-meta li:not(:last-child)::after {
+  content: none;
+}
+
+@media (max-width: 700px) {
+  .post-meta {
+    flex-direction: row;
+    gap: 0.45rem;
+  }
+}
+
+/* Phones: summary tiles get the number on the left so they stay short. */
+@media (max-width: 700px) {
+  .post-body .post-tldr-list li {
+    position: relative;
+    padding: 0.85rem 1rem 0.9rem 3.5rem;
+  }
+
+  .post-tldr-list li::before {
+    position: absolute;
+    top: 0.85rem;
+    left: 1rem;
+    margin: 0;
+    font-size: 2rem;
+  }
+}
+
+/* Bigger, airier body text. */
+.post-body {
+  font-size: clamp(1.08rem, 1.15vw, 1.2rem);
+}
+
+/* Highlighter on key phrases: the eye lands on them first. */
+.post-body p strong,
+.post-body li strong {
+  padding: 0 0.12em;
+  background: linear-gradient(transparent 60%, rgba(255, 130, 34, 0.38) 60%);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.post-body .post-tldr strong,
+.post-body .post-callout--ojo strong {
+  background: linear-gradient(transparent 60%, rgba(255, 130, 34, 0.6) 60%);
+}
+
+/* "## 3. Title": a counter row ("03 / 07") replaces the orange bar, so a
+   list article reads as a countdown while scrolling. */
+.post-body h2.post-h2-numbered {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.post-body h2.post-h2-numbered::before {
+  display: none;
+}
+
+.post-h2-num {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: var(--f-nm);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  color: var(--black);
+  font-variant-numeric: tabular-nums;
+}
+
+.post-h2-num::before {
+  content: "";
+  width: 2.5rem;
+  height: 0.3rem;
+  margin-right: 0.6rem;
+  border-radius: 999px;
+  background: var(--l);
+  transform-origin: 0 50%;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.post-h2-of {
+  color: var(--b-muted);
+  font-weight: 500;
+}
+
+/* Section bars draw in as each heading arrives (blog-viz.js arms them). */
+.post-body > h2::before {
+  transform-origin: 0 50%;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.post-body > h2.is-armed:not(.is-in)::before,
+.post-body > h2.is-armed:not(.is-in) .post-h2-num::before {
+  transform: scaleX(0);
+}
+
+/* Bullet lists: each item on its own tile with an orange dot. */
+.post-body > ul {
+  display: grid;
+  gap: 0.55em;
+  padding-left: 0;
+  list-style: none;
+}
+
+.post-body > ul > li {
+  position: relative;
+  padding: 0.75em 1em 0.75em 2.7em;
+  border-radius: 0.9rem;
+  background: var(--b-soft);
+  line-height: 1.55;
+}
+
+.post-body > ul > li + li {
+  margin-top: 0;
+}
+
+.post-body > ul > li::before {
+  content: "";
+  position: absolute;
+  top: 1.45em;
+  left: 1.05em;
+  width: 0.9em;
+  height: 0.2em;
+  border-radius: 999px;
+  background: var(--l);
+}
+
+/* Numbered lists: steps joined by a line, like a route. */
+.post-body > ol {
+  padding-left: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.post-body > ol > li {
+  position: relative;
+  min-height: 2.2em;
+  padding: 0.25em 0 0 3em;
+  counter-increment: step;
+}
+
+.post-body > ol > li + li {
+  margin-top: 0.8em;
+}
+
+.post-body > ol > li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  top: 0.1em;
+  left: 0;
+  width: 2.2em;
+  color: var(--black);
+  font-family: var(--f-h);
+  font-size: 1.9em;
+  line-height: 0.85;
+}
+
+.post-body > ol > li:first-child::before {
+  color: var(--l);
+}
+
+.post-body > ol > li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 2em;
+  bottom: -0.6em;
+  left: 0.55em;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--b-rule);
+}
+
+/* Callouts: sticker-like boxes with a label tab, so tips and warnings pop
+   out of the scroll. Black text only on white or cream, white only on black. */
+.post-body > .post-callout {
+  margin-top: 2.1em;
+}
+
+.post-callout {
+  position: relative;
+  padding: 1.5em 1.3em 1.2em;
+  border: 2px solid var(--b-ink);
+  border-radius: 1rem;
+  background: var(--d);
+  box-shadow: 5px 5px 0 var(--l);
+}
+
+.post-callout > * + * {
+  margin-top: 0.6em;
+}
+
+.post-body .post-callout-label {
+  position: absolute;
+  top: 0;
+  left: 1em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.8rem 0.35rem 0.55rem;
+  border-radius: 999px;
+  background: var(--black);
+  color: var(--d);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+  translate: 0 -55%;
+}
+
+.post-callout-icon {
+  display: block;
+  flex: none;
+  width: 1.05rem;
+  height: 1.05rem;
+  color: var(--l);
+}
+
+.post-callout-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.post-body .post-callout > p:not(.post-callout-label),
+.post-body .post-callout li {
+  line-height: 1.6;
+}
+
+.post-callout--truco,
+.post-callout--dato {
+  background: var(--b-soft);
+}
+
+.post-callout--dato {
+  box-shadow: 5px 5px 0 var(--b-ink);
+}
+
+.post-callout--ojo {
+  border-color: var(--black);
+  background: var(--black);
+  color: var(--d);
+}
+
+.post-body .post-callout--ojo .post-callout-label {
+  background: var(--d);
+  color: var(--black);
+}
+
+.post-body .post-callout--ojo a {
+  color: var(--d);
+}
+
+.post-body .post-callout--ojo :not(pre) > code {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* Floating progress pill: current section and minutes left. */
+.post-progress[hidden] {
+  display: none;
+}
+
+.post-progress {
+  position: fixed;
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  left: 50%;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.1rem;
+  border-radius: 999px;
+  background: var(--black);
+  color: var(--d);
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: 0 0.8rem 2rem -0.6rem rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 160%);
+  transition:
+    transform 0.45s var(--b-ease),
+    opacity 0.3s ease;
+}
+
+.post-progress.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.post-progress-track {
+  position: relative;
+  width: 3.5rem;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.post-progress-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--l);
+  transform: scaleX(calc(var(--p, 0) / 100));
+  transform-origin: 0 50%;
+}
+
+body:has(.menu-overlay.is-open) .post-progress {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .post-progress,
+  .post-body > h2::before,
+  .post-h2-num::before {
+    transition: none;
+  }
+}

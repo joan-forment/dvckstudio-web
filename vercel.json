@@ -1,0 +1,63 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.dvckstudio.com" }],
+      "destination": "https://dvckstudio.com/:path*",
+      "permanent": true
+    },
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/work.html", "destination": "/work", "permanent": true },
+    { "source": "/sample-project.html", "destination": "/sample-project", "permanent": true },
+    { "source": "/studio.html", "destination": "/studio", "permanent": true },
+    { "source": "/contact.html", "destination": "/contact", "permanent": true },
+    { "source": "/links.html", "destination": "/links", "permanent": true },
+    { "source": "/work/", "destination": "/work", "permanent": true },
+    { "source": "/sample-project/", "destination": "/sample-project", "permanent": true },
+    { "source": "/studio/", "destination": "/studio", "permanent": true },
+    { "source": "/contact/", "destination": "/contact", "permanent": true },
+    { "source": "/links/", "destination": "/links", "permanent": true },
+    { "source": "/blog.html", "destination": "/blog", "permanent": true },
+    { "source": "/blog/", "destination": "/blog", "permanent": true },
+    { "source": "/blog/:path([^.]+)\\.html", "destination": "/blog/:path", "permanent": true },
+    { "source": "/blog/:path([^.]+)/", "destination": "/blog/:path", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/work", "destination": "/work.html" },
+    { "source": "/sample-project", "destination": "/sample-project.html" },
+    { "source": "/studio", "destination": "/studio.html" },
+    { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/links", "destination": "/links.html" },
+    { "source": "/blog", "destination": "/blog.html" },
+    { "source": "/blog/:path([^.]+)", "destination": "/blog/:path.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/fonts/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/draco/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/(home|work|team-cards|sample-project|studio|clients|icons|logo|blog-images)/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=86400" }]
+    }
+  ]
+}

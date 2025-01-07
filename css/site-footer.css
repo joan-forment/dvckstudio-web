@@ -1,0 +1,223 @@
+/* Site footer: orange card with CTA, links, socials and a full-width logo. */
+
+.site-footer {
+  --sf-accent: #ff8222;
+  --sf-ink: #080808;
+  --sf-white: #ffffff;
+  --sf-gutter: clamp(16px, 2vw, 2rem);
+
+  position: relative;
+  /* Above the fixed header (nav 100, detached logo 101). */
+  z-index: 102;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: var(--sf-gutter);
+  padding-bottom: calc(var(--sf-gutter) + env(safe-area-inset-bottom));
+  background-color: var(--sf-white);
+}
+
+/* The open menu (z-index 99) must still cover the footer, including while
+   its close animation runs. */
+body:has(.menu-overlay.is-open) .site-footer {
+  z-index: 1;
+}
+
+.site-footer-card {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: clamp(1.5rem, 3vw, 3rem);
+  border-radius: clamp(1.25rem, 2vw, 2rem);
+  background-color: var(--sf-accent);
+  color: var(--sf-white);
+}
+
+.site-footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-footer p {
+  text-transform: none;
+}
+
+/* Top row --------------------------------------------------------------- */
+
+.site-footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2.5rem 3rem;
+  margin-bottom: clamp(3rem, 10vw, 9rem);
+}
+
+.site-footer-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.site-footer-title {
+  font-family: var(--f-nm);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+
+.site-footer-mail {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.4rem 0.4rem 0.4rem 1.25rem;
+  border-radius: 999px;
+  background-color: var(--sf-white);
+  color: var(--sf-accent) !important;
+  font-size: clamp(1.1rem, 2vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.site-footer-mail-arrow {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.2em;
+  height: 2.2em;
+  border-radius: 50%;
+  background-color: var(--sf-accent);
+  color: var(--sf-white);
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.site-footer-mail-arrow svg {
+  width: 55%;
+  height: 55%;
+}
+
+.site-footer-mail:hover,
+.site-footer-mail:focus-visible {
+  background-color: var(--sf-ink);
+  color: var(--sf-white) !important;
+}
+
+.site-footer-mail:hover .site-footer-mail-arrow,
+.site-footer-mail:focus-visible .site-footer-mail-arrow {
+  transform: rotate(-45deg);
+}
+
+.site-footer-cols {
+  display: flex;
+  gap: clamp(2rem, 6vw, 6rem);
+}
+
+.site-footer-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+  list-style: none;
+}
+
+.site-footer-col-label {
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase !important;
+  opacity: 0.8;
+}
+
+.site-footer-col a {
+  position: relative;
+  display: inline-block;
+  font-size: clamp(1rem, 1.4vw, 1.35rem);
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.site-footer-col a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.05em;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.site-footer-col a:hover::after,
+.site-footer-col a:focus-visible::after,
+.site-footer-col a[aria-current="page"]::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Logo ------------------------------------------------------------------ */
+
+.site-footer-logo {
+  display: block;
+  width: 100%;
+  /* Push logo + bottom row to the bottom of the full-height card. */
+  margin-top: auto;
+}
+
+.site-footer-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  /* Same recolour as the nav logo: black artwork to white. */
+  filter: brightness(0) invert(1);
+}
+
+/* Bottom row ------------------------------------------------------------ */
+
+.site-footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+}
+
+.site-footer-bottom p,
+.site-footer-bottom a {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Small screens --------------------------------------------------------- */
+
+@media (max-width: 700px) {
+  .site-footer-top {
+    flex-direction: column;
+  }
+
+  .site-footer-cols {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .site-footer-col {
+    align-items: flex-start;
+  }
+
+  .site-footer-mail {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  .site-footer-bottom {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,490 @@
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  width: 100%;
+  padding: 2rem;
+}
+
+.nav-logo,
+.nav-icon,
+.nav-toggler {
+  flex: 1;
+}
+
+.nav-logo--detached {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  z-index: 101;
+  transition: opacity 0.45s ease;
+}
+
+.nav-logo--detached img {
+  display: block;
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+  transition: opacity 0.45s ease;
+}
+
+/* The real logo is detached (fixed), so the placeholder keeps its box
+   height (img + link padding) and the toggler centers on the logo's axis. */
+.nav-logo--placeholder {
+  height: 3.5rem;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+nav:not(.nav-is-ready) .nav-toggler .nav-toggle-icon {
+  visibility: hidden;
+}
+
+.nav-logo a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  padding: 0.5rem;
+  text-decoration: none;
+}
+
+.nav-logo a img {
+  width: auto;
+  height: 2.5rem;
+  object-fit: contain;
+}
+
+.nav-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+@media (min-width: 1001px) {
+  /* flex slot width differs from toggler width, so centering in-flow drifts
+     off-screen-center. top is tuned (not nav's 2rem padding) so the icon's
+     own 3rem height still lands on the same vertical center as the logo
+     (2.5rem, fixed) and the toggler (2rem, flex-centered). */
+  .nav-icon {
+    position: absolute;
+    left: 50%;
+    top: 1.75rem;
+    transform: translateX(-50%);
+  }
+}
+
+.nav-icon a {
+  display: inline-flex;
+  border-radius: 50%;
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.nav-icon a:hover {
+  transform: rotate(-12deg) scale(1.08);
+}
+
+.nav-icon a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.nav-icon img {
+  width: auto;
+  height: 3rem;
+  object-fit: contain;
+}
+
+.nav-toggler {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 0.5rem;
+  transform: none;
+  cursor: pointer;
+}
+
+.nav-toggle-wrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+
+.nav-toggle-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+.nav-toggle-icon--close {
+  color: #ff8222;
+}
+
+.nav-toggle-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.nav-toggle-icon--close {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0);
+}
+
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  width: 100vw;
+  height: 100svh;
+  overflow: hidden;
+  background-color: var(--d);
+  color: var(--l);
+  clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+  will-change: clip-path;
+}
+
+/* Safari 26 tints its toolbars from the background of full-width fixed
+   elements, even clipped ones. Only paint it while the menu is shown. */
+.menu-overlay:not(.is-open) {
+  background-color: transparent;
+}
+
+.menu-overlay .menu-content {
+  position: absolute;
+  top: 35%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0 2.5rem;
+  transform: translateY(-50%);
+  will-change: transform, opacity;
+}
+
+.menu-overlay .menu-content p,
+.menu-overlay .menu-content a {
+  display: inline-block;
+  font-family: var(--f-nm);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.125;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--l);
+}
+
+.menu-overlay .menu-col {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.menu-overlay .menu-col:nth-child(2) {
+  text-align: right;
+}
+
+.menu-overlay .menu-col a,
+.menu-overlay .menu-col p {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.menu-overlay .split-line {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.menu-overlay .split-line-mask {
+  display: block;
+  overflow: hidden;
+}
+
+.menu-overlay .menu-img {
+  position: absolute;
+  top: 12%;
+  left: calc(50% - 8rem);
+  width: min(820px, 62vw);
+  aspect-ratio: 3/2;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  will-change: transform, opacity;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.menu-overlay .menu-img img,
+.menu-overlay .menu-img canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  transform: translateY(0);
+  will-change: transform;
+  pointer-events: none;
+}
+
+.menu-overlay .menu-img img {
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
+}
+
+.menu-overlay .menu-img canvas {
+  z-index: 2;
+  opacity: 1;
+}
+
+.menu-overlay .menu-links-wrapper {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  width: max-content;
+  padding: 2rem;
+  will-change: transform;
+}
+
+.menu-overlay .menu-link {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  will-change: transform;
+}
+
+.menu-overlay .menu-link a {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  font-family: var(--f-h);
+  font-size: 20rem;
+  font-weight: 900;
+  line-height: 0.85;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--l);
+}
+
+.menu-overlay .menu-link a span:nth-child(2) {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.menu-overlay .link-highlighter {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 400px;
+  height: 0.75rem;
+  background-color: var(--l);
+  will-change: transform, width;
+}
+
+/* Arrow that glides above the highlighted link (x written by nav.js). */
+.menu-overlay .link-arrow {
+  position: absolute;
+  top: -3rem;
+  left: 0;
+  width: 4.5rem;
+  margin-left: -2.25rem;
+  color: var(--l);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.menu-overlay .link-arrow svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: link-arrow-bob 1.4s ease-in-out infinite;
+}
+
+@keyframes link-arrow-bob {
+  50% {
+    transform: translateY(0.6rem);
+  }
+}
+
+/* Only visible on the stacked mobile menu, where there is no hover. */
+.menu-overlay .menu-link-arrow {
+  display: none;
+}
+
+/* Hovering one link dims the others so the target is obvious. */
+@media (hover: hover) and (min-width: 1001px) {
+  .menu-overlay .menu-link a {
+    transition: opacity 0.35s ease;
+  }
+
+  .menu-overlay .menu-links-wrapper:has(.menu-link:hover, .menu-link a:focus-visible)
+    .menu-link:not(:hover)
+    a:not(:focus-visible) {
+    opacity: 0.3;
+  }
+}
+
+.menu-overlay .char {
+  position: relative;
+  display: inline-block;
+  will-change: transform;
+}
+
+@media (max-width: 1000px) {
+  .menu-overlay .menu-img {
+    left: 50%;
+  }
+
+  nav {
+    padding: 1.5rem;
+  }
+
+  .nav-logo--detached {
+    top: 1.5rem;
+    left: 1.5rem;
+  }
+
+  .nav-logo a img {
+    height: 2.1rem;
+  }
+
+  .nav-icon {
+    display: none;
+  }
+
+  .nav-icon img {
+    height: 2.1rem;
+  }
+
+  .nav-logo--placeholder {
+    height: 3.1rem;
+  }
+
+  .menu-overlay .menu-content {
+    display: none;
+  }
+
+  .menu-overlay .menu-img {
+    display: block;
+    top: 29%;
+    width: min(88vw, 520px);
+    aspect-ratio: 4 / 3;
+  }
+
+  .menu-overlay .link-highlighter,
+  .menu-overlay .link-arrow {
+    display: none;
+  }
+
+  .menu-overlay .menu-link a {
+    display: flex;
+    align-items: center;
+    gap: 0.12em;
+  }
+
+  .menu-overlay .menu-link-arrow {
+    display: block;
+    flex: none;
+    width: 0.32em;
+    height: 0.32em;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transform: translateY(-0.04em);
+  }
+
+  /* Current page: shown, but quieter than the places you can go. */
+  .menu-overlay .menu-link a[aria-current="page"] {
+    opacity: 0.4;
+  }
+
+  .menu-overlay .menu-links-wrapper {
+    flex-direction: column;
+    gap: 0;
+    padding: 2rem;
+  }
+
+  .menu-overlay .menu-link a {
+    font-size: 7rem;
+  }
+}
+
+/* Light backgrounds (menu overlay, white sections, footers): the white logo
+   switches to brand orange so it stays visible. See setupNavTheme(). */
+.nav-logo--detached.is-menu-open img,
+body.nav-on-light:not(.blog-page-body) .nav-logo--detached img {
+  filter: brightness(0) saturate(100%) invert(58%) sepia(28%) saturate(5343%) hue-rotate(0deg) brightness(99%) contrast(101%);
+}
+
+body.nav-on-light:not(.blog-page-body) .nav-toggle-icon--open {
+  color: var(--l);
+}
+
+.nav-toggle-icon,
+.nav-logo--detached img {
+  transition:
+    color 0.3s ease,
+    filter 0.6s ease,
+    opacity 0.45s ease;
+}
+
+.nav-toggler:focus-visible {
+  outline: none;
+}
+
+.nav-toggler:focus-visible .nav-toggle-wrapper {
+  outline: 2px solid currentColor;
+  outline-offset: 6px;
+  border-radius: 4px;
+}
+
+.menu-overlay .menu-content a:hover,
+.menu-overlay .menu-content a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+/* The menu image slot has no media any more: keep it out of the layout. */
+.menu-overlay .menu-img:empty {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-overlay .link-arrow svg {
+    animation: none;
+  }
+
+  .nav-icon a {
+    transition: none;
+  }
+}

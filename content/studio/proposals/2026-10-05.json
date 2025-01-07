@@ -1,0 +1,190 @@
+{
+  "date": "2026-10-05",
+  "proposals": [
+    {
+      "title": "El probador virtual de ChatGPT llega: si vendes ropa, ojo",
+      "slug": "chatgpt-probador-virtual-tiendas-ropa",
+      "category": "ia",
+      "kind": "actualidad",
+      "angle": "ChatGPT ya enseña a la gente con la ropa puesta antes de comprar (botón «Try on» con un selfie y Favoritos en la biblioteca). Contamos cómo funciona, qué riesgos tiene para la privacidad del cliente y qué tiene que cuidar una tienda online en sus fichas de producto y fotos para salir bien en ese escaparate.",
+      "why": "OpenAI lo lanzó en todo el mundo el 1 de octubre y cambia por dónde se descubren productos de moda.",
+      "keyword": "probador virtual ChatGPT",
+      "sources": [
+        {
+          "title": "ChatGPT — Release Notes (New ways to shop in ChatGPT)",
+          "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+          "date": "2026-10-01"
+        },
+        {
+          "title": "ChatGPT can now virtually try on clothes for you (TechCrunch)",
+          "url": "https://techcrunch.com/2026/10/01/chatgpt-can-now-virtually-try-on-clothes-for-you/",
+          "date": "2026-10-01"
+        }
+      ]
+    },
+    {
+      "title": "El 31 % de internet ya lo escribe la IA. Así destaca tu web",
+      "slug": "internet-escrito-por-ia-destacar-web",
+      "category": "ia",
+      "kind": "actualidad",
+      "angle": "Un estudio calcula que el 31,1 % del texto web de agosto de 2026 era de IA (en junio, el 27,5 %), y que ese texto empeora a los propios modelos. Explicamos qué significa vivir rodeado de contenido clónico y damos señales concretas para que los textos de tu web suenen a persona y aporten algo que la IA no tiene: datos propios, casos y opinión.",
+      "why": "El paper salió el 30 de septiembre y la cifra es perfecta para soltarla en cualquier grupo de WhatsApp.",
+      "keyword": "contenido generado por IA",
+      "sources": [
+        {
+          "title": "How Much Is an AI Token Worth? Scaling Laws for Wild AI-Generated Web Text (arXiv)",
+          "url": "https://arxiv.org/abs/2609.40295",
+          "date": "2026-09-30"
+        }
+      ]
+    },
+    {
+      "title": "Gemini 4 Argon: la IA de Google que (aún) no te dejan usar",
+      "slug": "gemini-4-argon-google-acceso-restringido",
+      "category": "ia",
+      "kind": "actualidad",
+      "angle": "Google presume de su modelo más potente, pero de momento solo lo pueden usar los expertos en ciberseguridad del Fairwind Program por miedo a que lo usen para atacar. Contamos qué promete (un millón de tokens de salida, precio de lanzamiento de 2/10 $ por millón), por qué lo frenan, cuándo llegará al resto y si tiene sentido esperarlo o seguir con lo que ya usas.",
+      "why": "Anunciado el 30 de septiembre, es la primera vez que un gigante retiene su modelo estrella por seguridad y todo el mundo lo comenta.",
+      "keyword": "Gemini 4 Argon",
+      "sources": [
+        {
+          "title": "Gemini 4 Argon: our next era of frontier intelligence (Google Blog)",
+          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+          "date": "2026-09-30"
+        },
+        {
+          "title": "Google releases Gemini 4 Argon, called its most powerful model yet (TechCrunch)",
+          "url": "https://techcrunch.com/2026/09/30/google-releases-gemini-4-argon-called-its-most-powerful-model-yet/",
+          "date": "2026-09-30"
+        }
+      ]
+    },
+    {
+      "title": "¿Encuestas hechas con IA? Fallan 12 puntos y Pew lo demuestra",
+      "slug": "encuestas-con-ia-fallan-estudio-pew",
+      "category": "ia",
+      "kind": "actualidad",
+      "angle": "Pew Research puso a Claude Opus 4.6 a hacerse pasar por encuestados reales: se equivocó de media 12 puntos, exageró estereotipos y casi nunca dijo «no sé». Lo usamos para explicar por qué no deberías preguntarle a ChatGPT qué opinan tus clientes, y para qué sí sirve la IA en la investigación de mercado.",
+      "why": "Muchos negocios y agencias venden «clientes sintéticos» y el estudio del 30 de septiembre les desmonta el chiringuito con datos.",
+      "keyword": "encuestas con IA",
+      "sources": [
+        {
+          "title": "Can AI stand in for human survey takers? Not really (Pew Research Center)",
+          "url": "https://www.pewresearch.org/data-labs/2026/09/30/can-ai-stand-in-for-human-survey-takers-not-really/",
+          "date": "2026-09-30"
+        }
+      ]
+    },
+    {
+      "title": "FLUX 3 Image: edita fotos con IA sin que te destroce el resto",
+      "slug": "flux-3-image-editar-fotos-ia",
+      "category": "diseno",
+      "kind": "actualidad",
+      "angle": "El gran drama de editar con IA es que cambias un detalle y te cambia toda la foto. FLUX 3 Image deja marcar cajas, editar solo esa zona sin tocar ni un píxel más y combinar hasta 10 referencias en 4K. Lo comparamos con lo de siempre, contamos cuánto cuesta, qué pasa con la licencia comercial y para qué trabajos de diseño compensa.",
+      "why": "Black Forest Labs lo lanzó el 1 de octubre, con la API a mitad de precio hasta el 8 de octubre y los pesos abiertos anunciados para las próximas semanas.",
+      "keyword": "editar imágenes con IA",
+      "sources": [
+        {
+          "title": "FLUX 3 Image (Black Forest Labs)",
+          "url": "https://bfl.ai/models/flux-3-image",
+          "date": "2026-10-01"
+        },
+        {
+          "title": "Black Forest Labs launches Flux 3 Image with multi-step editing that leaves the rest of your picture alone (The Decoder)",
+          "url": "https://the-decoder.com/black-forest-labs-launches-flux-3-image-with-multi-step-editing-that-leaves-the-rest-of-your-picture-alone/",
+          "date": "2026-10-01"
+        }
+      ]
+    },
+    {
+      "title": "DESIGN.md de Google Stitch: que la IA respete el diseño de tu web",
+      "slug": "google-stitch-design-md-ia-diseno-web",
+      "category": "desarrollo",
+      "kind": "actualidad",
+      "angle": "La IA que programa webs ignora tu marca: colores, tipografías y espaciados al azar. Google Stitch CLI genera un DESIGN.md, un archivo de texto con tu sistema de diseño que los agentes leen y obedecen. Explicamos qué es, cómo se prueba con un `npx` y si esto acaba de una vez con las webs clónicas o es otra moda.",
+      "why": "Stitch CLI salió el 1 de octubre y el DESIGN.md apunta a convertirse en el estándar para pasar el diseño a la IA.",
+      "keyword": "Google Stitch",
+      "sources": [
+        {
+          "title": "Stitch CLI Overview (Google Stitch Docs)",
+          "url": "https://stitch.google.com/docs/cli/overview",
+          "date": ""
+        },
+        {
+          "title": "Stitch CLI: Google Brings UI Design to the Terminal (and to Your Agent)",
+          "url": "https://kevindavila.dev/en/blog/stitch-cli",
+          "date": "2026-10-01"
+        }
+      ]
+    },
+    {
+      "title": "Figma ya hace columnas como CSS: el wrap vertical explicado",
+      "slug": "figma-auto-layout-wrap-vertical",
+      "category": "diseno",
+      "kind": "actualidad",
+      "angle": "El auto layout de Figma por fin reparte en columnas nuevas lo que no cabe, igual que flexbox en CSS. Contamos para qué sirve en la práctica (listados, menús, galerías), por qué hace que el diseño se parezca más a la web real y cómo evitar el clásico «en Figma quedaba bien» cuando el desarrollador lo monta.",
+      "why": "Figma lo publicó el 25 de septiembre y quita una de las mayores fricciones entre diseño y código.",
+      "keyword": "auto layout Figma",
+      "sources": [
+        {
+          "title": "Vertical wrap available in auto layout (Figma Forum, Product Updates)",
+          "url": "https://forum.figma.com/product-updates-3/vertical-wrap-available-in-auto-layout-58389",
+          "date": "2026-09-25"
+        },
+        {
+          "title": "Figma Release Notes",
+          "url": "https://www.figma.com/release-notes/",
+          "date": "2026-09-25"
+        }
+      ]
+    },
+    {
+      "title": "Cómo conseguir que ChatGPT recomiende tu negocio (sin humo)",
+      "slug": "como-aparecer-en-chatgpt-negocio",
+      "category": "ia",
+      "kind": "guia",
+      "angle": "Guía para gente normal: cómo encuentra ChatGPT las webs que cita, qué hacer para que su rastreador pueda leer la tuya, qué contenido suele recomendar y qué venden los gurús del «posicionamiento en IA» que es puro humo.",
+      "why": "Cada vez más clientes preguntan a la IA antes que a Google y «cómo salir en ChatGPT» es una de las dudas más buscadas.",
+      "keyword": "aparecer en ChatGPT",
+      "sources": [
+        {
+          "title": "Overview of OpenAI Crawlers (OpenAI Platform Docs)",
+          "url": "https://platform.openai.com/docs/bots",
+          "date": ""
+        }
+      ]
+    },
+    {
+      "title": "Cómo elegir la tipografía de tu web sin parecer una plantilla",
+      "slug": "como-elegir-tipografia-web",
+      "category": "diseno",
+      "kind": "guia",
+      "angle": "Cuántas fuentes usar, cómo combinar titular y texto, qué tamaño mínimo se lee en móvil, licencias para no meterte en líos y cómo cargarlas sin que la web vaya lenta. Con ejemplos de combinaciones que funcionan y las que gritan «plantilla de 2015».",
+      "why": "Elegir tipografía es de lo primero que busca cualquiera que se monta o renueva su web, y es donde más se nota la chapuza.",
+      "keyword": "tipografía para web",
+      "sources": [
+        {
+          "title": "Best practices for fonts (web.dev)",
+          "url": "https://web.dev/articles/font-best-practices",
+          "date": ""
+        }
+      ]
+    },
+    {
+      "title": "Dominio y hosting: qué son y cuánto deberías pagar de verdad",
+      "slug": "dominio-y-hosting-que-son-precio",
+      "category": "desarrollo",
+      "kind": "guia",
+      "angle": "Explicado con la comparación del local y el cartel: qué es el dominio, qué es el hosting, cuánto cuesta cada cosa en España, las trampas de siempre (el precio del primer año, el dominio a nombre de la agencia, las renovaciones infladas) y cómo comprobar que el tuyo es tuyo de verdad.",
+      "why": "«Qué es un hosting» y «cuánto cuesta un dominio» son búsquedas constantes de cualquiera que va a montar una web.",
+      "keyword": "dominio y hosting",
+      "sources": [
+        {
+          "title": "Dominios .es (Red.es)",
+          "url": "https://www.dominios.es/",
+          "date": ""
+        }
+      ]
+    }
+  ]
+}

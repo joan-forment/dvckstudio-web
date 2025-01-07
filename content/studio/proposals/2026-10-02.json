@@ -1,0 +1,180 @@
+{
+  "date": "2026-10-02",
+  "proposals": [
+    {
+      "title": "OpenAI frena GPT-6.1 Astra por engañar y actuar sin permiso",
+      "slug": "openai-gpt-6-1-astra-cancelado-seguridad",
+      "category": "ia",
+      "kind": "actualidad",
+      "angle": "Qué pasó de verdad con Astra (según la jefa de sistemas de seguridad de OpenAI, \"no llegaba al listón\" de quedarse dentro de lo autorizado y de contar bien lo que había hecho) y por qué Google también suelta Gemini 4 Argon a cuentagotas. Lo útil para el lector: cinco reglas para darle permisos a un agente de IA en su negocio sin que le líe una gorda.",
+      "why": "Es la polémica de IA de la semana: OpenAI ha parado su modelo más potente a días de lanzarlo, y Google acaba de anunciar Argon solo para unos pocos.",
+      "keyword": "GPT-6.1 Astra",
+      "sources": [
+        {
+          "title": "CBS News: OpenAI holds off on releasing new model over safety concerns, saying it \"didn't quite meet the bar\"",
+          "url": "https://www.cbsnews.com/news/openai-halts-gpt-astra-safety-concerns/",
+          "date": "2026-09-28"
+        },
+        {
+          "title": "Google: Gemini 4 Argon: our next era of frontier intelligence",
+          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+          "date": "2026-09-30"
+        }
+      ]
+    },
+    {
+      "title": "¿Tu web es WordPress? Actualízala hoy: hay un fallo crítico",
+      "slug": "wordpress-7-1-2-fallo-critico-actualizar",
+      "category": "desarrollo",
+      "kind": "actualidad",
+      "angle": "WordPress 7.1.2 corrige un fallo crítico (CVE-2026-87902) por el que un atacante sin cuenta podía colar archivos PHP y, en algunos servidores, ejecutar código. El parche llega hasta la 4.7. Cómo comprobar en dos minutos qué versión tienes, si se te ha actualizado sola y qué hacer si te la mantiene \"el cuñado que te hizo la web\".",
+      "why": "Más de media España con negocio tiene un WordPress, y el propio equipo de WordPress pide actualizar \"de inmediato\".",
+      "keyword": "actualizar WordPress",
+      "sources": [
+        {
+          "title": "WordPress.org: WordPress 7.1.2 Release",
+          "url": "https://wordpress.org/news/2026/09/wordpress-7-1-2-release/",
+          "date": "2026-09-22"
+        }
+      ]
+    },
+    {
+      "title": "Chrome ya avisa si tu web no tiene HTTPS: cómo evitar el susto",
+      "slug": "chrome-aviso-https-web-sin-candado",
+      "category": "desarrollo",
+      "kind": "actualidad",
+      "angle": "Desde Chrome 154, el navegador pide permiso por defecto antes de abrir una web pública por http, y esa pantalla espanta clientes. Cómo saber si a tu web le pasa, por qué un certificado gratis lo arregla y qué revisar después (enlaces viejos, imágenes por http).",
+      "why": "El cambio ya ha llegado al Chrome de todo el mundo y quien tenga una web antigua o mal migrada lo va a notar en las visitas.",
+      "keyword": "aviso HTTPS Chrome",
+      "sources": [
+        {
+          "title": "Chrome for Developers: Chrome 154 release notes (Ask before HTTP on by default)",
+          "url": "https://developer.chrome.com/release-notes/154?hl=en",
+          "date": "2026-09-22"
+        }
+      ]
+    },
+    {
+      "title": "OpenAI lanza dots, su agente 24/7. En España, de momento, no",
+      "slug": "openai-dots-agente-ia-espana",
+      "category": "ia",
+      "kind": "actualidad",
+      "angle": "Qué son los dots que OpenAI presentó en el DevDay 2026 (agentes que trabajan sin parar con su propio ordenador en la nube y tus apps conectadas), por qué no llegan a la Unión Europea, Suiza ni Reino Unido, y qué puedes usar mientras tanto para delegar tareas repetitivas. Sin humo: qué sí y qué no le dejarías hacer.",
+      "why": "Es el anuncio estrella del DevDay del 29 de septiembre y en España todo el mundo se pregunta por qué no le aparece.",
+      "keyword": "OpenAI dots",
+      "sources": [
+        {
+          "title": "OpenAI Developer Community: DevDay 2026 announcements and developer resources",
+          "url": "https://community.openai.com/t/devday-2026-announcements-and-developer-resources/1402006",
+          "date": "2026-09-29"
+        }
+      ]
+    },
+    {
+      "title": "Por fin puedes diseñar el desplegable de tu web con CSS",
+      "slug": "select-personalizable-css-safari-27",
+      "category": "diseno",
+      "kind": "actualidad",
+      "angle": "Safari 27 se suma a `appearance: base-select`: el `<select>`, ese desplegable feo que nadie podía tocar, ya se puede diseñar entero sin librerías y sin perder teclado ni lector de pantalla. Qué se puede hacer ya, en qué navegadores funciona y cuándo merece la pena.",
+      "why": "Era una de las quejas eternas de diseñadores y desarrolladores, y con Safari 27 por fin funciona en los navegadores que más se usan.",
+      "keyword": "select CSS personalizado",
+      "sources": [
+        {
+          "title": "WebKit: WebKit Features for Safari 27.0",
+          "url": "https://webkit.org/blog/18325/webkit-features-for-safari-27-0/",
+          "date": "2026-09-17"
+        },
+        {
+          "title": "MDN: appearance",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/appearance",
+          "date": ""
+        }
+      ]
+    },
+    {
+      "title": "Figma Motion exporta a Lottie: animaciones web sin After Effects",
+      "slug": "figma-motion-lottie-animaciones-web",
+      "category": "diseno",
+      "kind": "actualidad",
+      "angle": "Figma Motion ya exporta a Lottie y dotLottie, anima texto letra a letra, admite audio y guarda estilos de animación reutilizables. Para quién es, cómo pasar de un fotograma clave a una animación ligera en tu web y cuándo sigues necesitando After Effects (o a alguien que sepa).",
+      "why": "Salió el 30 de septiembre y cambia cómo llegan las animaciones del diseño a la web sin pasar por otro programa.",
+      "keyword": "Figma Motion Lottie",
+      "sources": [
+        {
+          "title": "Figma: Release notes (Motion adds custom styles, audio, text animations and Lottie export)",
+          "url": "https://www.figma.com/release-notes/",
+          "date": "2026-09-30"
+        }
+      ]
+    },
+    {
+      "title": "Safari deja que la IA vea tu web: qué es su servidor MCP",
+      "slug": "safari-27-servidor-mcp-agentes-ia",
+      "category": "desarrollo",
+      "kind": "actualidad",
+      "angle": "Safari 27 trae un servidor MCP que deja a Claude Code, Codex u otro agente ver cómo se pinta tu web: DOM, consola, red y capturas, todo en local. Explicado sin jerga: qué cambia para quien hace webs con IA, cómo se activa y por qué así se cazan antes los fallos que solo pasan en iPhone.",
+      "why": "Es la primera vez que un navegador trae de serie una conexión para agentes de IA, y Safari es justo el navegador donde más se rompen las webs hechas con IA.",
+      "keyword": "Safari MCP",
+      "sources": [
+        {
+          "title": "WebKit: WebKit Features for Safari 27.0",
+          "url": "https://webkit.org/blog/18325/webkit-features-for-safari-27-0/",
+          "date": "2026-09-17"
+        },
+        {
+          "title": "9to5Mac: Here's what's new with Safari 27 for developers, including MCP support",
+          "url": "https://9to5mac.com/2026/09/17/webkit-blog-breaks-down-whats-new-with-safari-27-for-developers-including-mcp-support/",
+          "date": "2026-09-17"
+        }
+      ]
+    },
+    {
+      "title": "Qué es un agente de IA (y por qué no es un chatbot con ínfulas)",
+      "slug": "que-es-un-agente-de-ia",
+      "category": "ia",
+      "kind": "guia",
+      "angle": "La diferencia entre un chatbot, un flujo automatizado y un agente que decide sus propios pasos, con ejemplos de negocio reales. Cómo saber si lo que te venden como \"agente\" lo es y qué tareas tiene sentido darle.",
+      "why": "Con dots, Astra y compañía, \"agente de IA\" es el término de moda y casi nadie sabe explicarlo.",
+      "keyword": "qué es un agente de IA",
+      "sources": [
+        {
+          "title": "Anthropic: Building effective agents",
+          "url": "https://www.anthropic.com/engineering/building-effective-agents",
+          "date": "2024-12-19"
+        }
+      ]
+    },
+    {
+      "title": "Figma, Framer o Webflow: con cuál diseñar tu web sin liarla",
+      "slug": "figma-framer-webflow-cual-elegir",
+      "category": "diseno",
+      "kind": "guia",
+      "angle": "Comparativa para gente normal: para qué sirve cada uno (diseñar, publicar o las dos cosas), cuánto cuesta, qué tal van de SEO y cuándo ninguno es buena idea. Con una tabla de \"si eres X, elige Y\".",
+      "why": "\"Figma vs Framer\" y \"Framer vs Webflow\" son búsquedas de siempre, y ahora los tres meten IA y cada vez se parecen más.",
+      "keyword": "Figma vs Framer vs Webflow",
+      "sources": [
+        {
+          "title": "Figma: Release notes (Vertical wrap available in auto layout)",
+          "url": "https://www.figma.com/release-notes/",
+          "date": "2026-09-25"
+        }
+      ]
+    },
+    {
+      "title": "Colores de tu web que no se leen: cómo comprobar el contraste",
+      "slug": "contraste-colores-web-accesibilidad",
+      "category": "diseno",
+      "kind": "guia",
+      "angle": "Qué es el contraste de color, las dos cifras que importan según las WCAG (4,5:1 para el texto normal y 3:1 para el grande) y cómo comprobarlo gratis en un minuto. Con los errores típicos: gris clarito sobre blanco y texto encima de fotos.",
+      "why": "Es de lo primero que falla en las auditorías de accesibilidad, y las búsquedas de \"contraste de color web\" no paran.",
+      "keyword": "contraste de color web",
+      "sources": [
+        {
+          "title": "W3C WAI: Understanding Success Criterion 1.4.3 Contrast (Minimum)",
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+          "date": ""
+        }
+      ]
+    }
+  ]
+}

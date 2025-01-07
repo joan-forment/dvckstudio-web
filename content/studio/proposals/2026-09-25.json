@@ -1,0 +1,180 @@
+{
+  "date": "2026-09-25",
+  "proposals": [
+    {
+      "title": "Vulnerabilidad crítica en Next.js: cómo actualizar tu web",
+      "slug": "nextjs-vulnerabilidad-critica-nextog",
+      "category": "desarrollo",
+      "kind": "actualidad",
+      "angle": "Un fallo de ejecución remota de código en el módulo next/og afecta a todos los proyectos Next.js que lo usen. El lector aprenderá qué versiones están expuestas, cómo actualizar a v16.3.6 o v15.5.26 y qué hace exactamente la vulnerabilidad.",
+      "why": "El parche se publicó el 22-23 de septiembre; cualquier proyecto sin actualizar está en riesgo antes de que el exploit circule públicamente.",
+      "keyword": "vulnerabilidad next.js next/og",
+      "sources": [
+        {
+          "title": "Next.js Releases – Releasebot",
+          "url": "https://releasebot.io/updates/vercel/next-js",
+          "date": "2026-09-23"
+        }
+      ]
+    },
+    {
+      "title": "Tailwind CSS se une a Shopify: esto es lo que cambia",
+      "slug": "tailwind-css-shopify-que-cambia",
+      "category": "desarrollo",
+      "kind": "actualidad",
+      "angle": "Shopify adquirió Tailwind Labs el 9 de septiembre: la licencia MIT y el código siguen intactos, pero los productos comerciales cierran sus registros. El artículo aclara qué cambia para quienes usan Tailwind CSS en proyectos nuevos y existentes.",
+      "why": "La noticia generó mucha incertidumbre y los desarrolladores necesitan saber si deben actuar o cambiar de herramienta antes de planificar su siguiente proyecto.",
+      "keyword": "tailwind css shopify",
+      "sources": [
+        {
+          "title": "Tailwind Labs is joining Shopify – Tailwind CSS Blog",
+          "url": "https://tailwindcss.com/blog/tailwind-is-joining-shopify",
+          "date": "2026-09-09"
+        },
+        {
+          "title": "Shopify extends lifeline to Tailwind – The Register",
+          "url": "https://www.theregister.com/devops/2026/09/10/shopify-extends-lifeline-to-tailwind-as-vibe-coding-erodes-web-dev-platforms-bottom-line/5295672",
+          "date": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "title": "Figma Weave: publica tus propias herramientas de IA",
+      "slug": "figma-weave-herramientas-ia-comunidad",
+      "category": "ia",
+      "kind": "actualidad",
+      "angle": "Figma permite ahora crear herramientas de IA en Weave y publicarlas en la Comunidad para que cualquier diseñador las use directamente en Figma Design. El lector verá qué son, qué herramientas ya existen y cómo empezar a construir la suya.",
+      "why": "Disponible desde el 16 de septiembre, amplía radicalmente lo que se puede hacer con IA en Figma sin salir de la aplicación.",
+      "keyword": "figma weave herramientas ia",
+      "sources": [
+        {
+          "title": "Figma Release Notes",
+          "url": "https://www.figma.com/release-notes/",
+          "date": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "title": "Core update de Google de agosto: los CWV deciden el tráfico",
+      "slug": "google-core-update-agosto-cwv-trafico",
+      "category": "desarrollo",
+      "kind": "actualidad",
+      "angle": "La actualización core de agosto terminó el 21 de septiembre tras 26 días; los sitios con buenas Core Web Vitals ganaron entre un 12% y un 28% más de visitas. El artículo explica qué métricas medir y cómo actuar si tu web perdió posiciones.",
+      "why": "Con el update ya concluido es el momento ideal para que los desarrolladores auditen su rendimiento y entiendan con datos qué ganaron o perdieron.",
+      "keyword": "google core update agosto 2026",
+      "sources": [
+        {
+          "title": "Google's August 2026 Core Update: What Actually Changed – Koira AI",
+          "url": "https://www.koira.ai/blog/google-august-2026-core-update-small-business-impact",
+          "date": "2026-09-21"
+        },
+        {
+          "title": "September 2026 SEO News – Numinix",
+          "url": "https://www.numinix.com/blog/september-2026-seo-algorithm-news-update/",
+          "date": "2026-09-21"
+        }
+      ]
+    },
+    {
+      "title": "Framer Skills: entrena al agente de IA con tu sistema de diseño",
+      "slug": "framer-skills-agente-ia-sistema-diseno",
+      "category": "diseno",
+      "kind": "actualidad",
+      "angle": "Skills es la nueva función de Framer que permite guardar instrucciones sobre tu sistema de diseño para que el agente las aplique en cada proyecto sin repetirlas. El lector aprenderá a configurarlas y a referenciar páginas, componentes y estilos.",
+      "why": "Lanzado el 22 de septiembre, resuelve la frustración de tener que explicarle el contexto al agente al inicio de cada nueva sesión.",
+      "keyword": "framer skills agente ia",
+      "sources": [
+        {
+          "title": "Framer Updates",
+          "url": "https://www.framer.com/updates",
+          "date": "2026-09-22"
+        }
+      ]
+    },
+    {
+      "title": "Midjourney v8.2: edita imágenes con texto y referencias",
+      "slug": "midjourney-v8-editor-texto-referencias",
+      "category": "ia",
+      "kind": "actualidad",
+      "angle": "El editor de Midjourney v8.2 permite retocar cualquier imagen con instrucciones en lenguaje natural y hasta cuatro imágenes de referencia, directamente desde el lightbox. El artículo muestra el flujo paso a paso para obtener resultados consistentes.",
+      "why": "Las mejoras de septiembre ya están disponibles y este flujo reemplaza para muchos el retoque en Photoshop para ajustes creativos iterativos.",
+      "keyword": "midjourney editor ia imagenes",
+      "sources": [
+        {
+          "title": "Midjourney Alpha Changelog – Releasebot",
+          "url": "https://releasebot.io/updates/midjourney",
+          "date": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "title": "text-box-trim en Firefox 156: tipografía CSS sin ajustes manuales",
+      "slug": "text-box-trim-css-firefox-tipografia",
+      "category": "desarrollo",
+      "kind": "actualidad",
+      "angle": "Firefox 156 (15 sept) completa el soporte cross-browser de text-box-trim y text-box-edge, que eliminan el espacio vertical extra que añaden las fuentes sobre el texto. El artículo enseña a aplicarlas para lograr alineaciones tipográficas exactas en producción.",
+      "why": "Con Firefox incorporado la propiedad ya es usable sin fallbacks complicados; era la última pieza que faltaba para un soporte universal.",
+      "keyword": "text-box-trim css",
+      "sources": [
+        {
+          "title": "Firefox 156 for Developers – MDN",
+          "url": "https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/156",
+          "date": "2026-09-15"
+        }
+      ]
+    },
+    {
+      "title": "CSS anchor positioning: posiciona tooltips sin JavaScript",
+      "slug": "css-anchor-positioning-sin-javascript",
+      "category": "diseno",
+      "kind": "guia",
+      "angle": "La API de CSS anchor positioning fija tooltips, popovers y menús flotantes a cualquier elemento sin JS ni librerías externas. Guía práctica con los casos de uso más comunes y advertencias de compatibilidad entre navegadores.",
+      "why": "Muchos desarrolladores aún usan Floating UI o Popper.js sin saber que CSS ya puede encargarse de esto de forma nativa.",
+      "keyword": "css anchor positioning",
+      "sources": [
+        {
+          "title": "CSS anchor positioning API – Chrome for Developers",
+          "url": "https://developer.chrome.com/blog/css-anchor-positioning-api",
+          "date": ""
+        },
+        {
+          "title": "CSS anchor positioning – MDN",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_anchor_positioning",
+          "date": ""
+        }
+      ]
+    },
+    {
+      "title": "MCP en diseño web: conecta Figma con tu editor de código",
+      "slug": "mcp-figma-cursor-diseno-codigo",
+      "category": "diseno",
+      "kind": "guia",
+      "angle": "El servidor MCP de Figma permite que editores como Cursor o Claude Code lean componentes, tokens y estilos del archivo de diseño en tiempo real. Guía de configuración paso a paso y casos de uso que eliminan el copy-paste manual entre diseño y código.",
+      "why": "La mayoría de equipos aún no ha probado esta integración pese a que ya está disponible y ahorra horas de sincronización entre diseñadores y desarrolladores.",
+      "keyword": "mcp figma cursor codigo",
+      "sources": [
+        {
+          "title": "Figma Release Notes – Shaders and MCP Server Updates",
+          "url": "https://www.figma.com/release-notes/",
+          "date": "2026-09-01"
+        }
+      ]
+    },
+    {
+      "title": "Scheduler.yield(): mejora el INP dividiendo tareas largas",
+      "slug": "scheduler-yield-inp-tareas-largas",
+      "category": "desarrollo",
+      "kind": "guia",
+      "angle": "Scheduler.yield() cede el control al navegador entre fragmentos de trabajo intensivo, mejorando la respuesta a interacciones sin reescribir la arquitectura del código. Guía con ejemplos reales en scroll handlers, carga de datos y animaciones.",
+      "why": "Es la técnica más sencilla para reducir el INP, y Firefox 156 acaba de mejorar su comportamiento haciéndola más fiable y predecible.",
+      "keyword": "scheduler yield javascript inp",
+      "sources": [
+        {
+          "title": "Scheduler: yield() method – MDN",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/Scheduler/yield",
+          "date": ""
+        }
+      ]
+    }
+  ]
+}

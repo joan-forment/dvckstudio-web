@@ -1,0 +1,69 @@
+@import "./fonts.css";
+
+:root {
+  --links-orange: #ff8222;
+  --links-ink: #080808;
+  --links-paper: #f4f0e8;
+  --links-line: rgba(8, 8, 8, 0.22);
+  --links-font: "Neue Montreal", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--links-orange);
+  color: var(--links-ink);
+  font-family: var(--links-font);
+}
+
+.links-page {
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 42rem);
+  min-height: 100svh;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 2rem;
+}
+
+.links-brand { text-align: center; }
+.links-brand img { width: min(14rem, 58vw); height: auto; }
+.links-brand p,
+.links-intro,
+.links-location,
+.links-socials a,
+.links-nav a {
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+.links-brand p { margin: 1rem 0 0; }
+.links-intro { margin: 3.5rem 0 1rem; text-align: center; }
+.links-nav { display: grid; gap: 0.65rem; }
+.links-nav a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 4rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--links-ink);
+  color: var(--links-ink);
+  text-decoration: none;
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+.links-nav a:hover,
+.links-nav a:focus-visible { background: var(--links-ink); color: var(--links-paper); transform: translateY(-2px); }
+.links-nav span { font-size: 1.2rem; }
+.links-socials { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1rem; margin-top: auto; padding-top: 4rem; }
+.links-socials a { color: var(--links-ink); text-decoration: none; }
+.links-socials a:hover, .links-socials a:focus-visible { text-decoration: underline; }
+.links-location { margin: 2rem 0 0; text-align: center; }
+.links-location a { color: inherit; text-underline-offset: 0.2em; }
+.links-socials a { display: inline-flex; align-items: center; min-height: 2.75rem; }
+
+@media (min-width: 640px) {
+  .links-page { padding-top: 5rem; }
+  .links-nav a { min-height: 4.5rem; padding-inline: 1.25rem; }
+}

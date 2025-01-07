@@ -1,0 +1,416 @@
+{
+  "jobs": {
+    "automatizar-tareas-negocio-ia": {
+      "slug": "automatizar-tareas-negocio-ia",
+      "title": "7 tareas que la IA hace mejor que tú (y no pasa nada)",
+      "description": "La IA no te va a quitar el curro: te va a quitar las tareas que odias. 7 automatizaciones que ahorran horas en tu negocio, con sus trampas.",
+      "category": "ia",
+      "source": "draft",
+      "status": "ready",
+      "covers": [
+        {
+          "id": "1",
+          "status": "ready",
+          "scene": "A street kid in baggy cargo pants, oversized hoodie, chunky sneakers and a backwards cap sits slumped in a beanbag chair, feet up on a milk crate, hands behind his head grinning while seven small robots scramble around him: one mops the floor, one types on a chunky CRT monitor, one sorts a towering stack of folders, one answers a fat brick mobile phone, one files papers into a filing cabinet, one waters a plastic plant, one shreds documents into confetti. Low angle, slightly below the kid's eye level, looking up at the chaos of busy robots. In the background, a tagged concrete wall and a busted vending machine. Skateboards, spray cans and crushed soda tins litter the floor.",
+          "alt": "Un chaval relajado en un puf mientras siete robots pequeños hacen todo el trabajo de oficina a su alrededor."
+        },
+        {
+          "id": "2",
+          "status": "ready",
+          "scene": "A cramped backroom stockroom of a corner shop, shelves packed with cardboard boxes, a mop bucket, a radio cassette player and a flickering neon price tag. In the center, a massive mechanical arm on a wheeled base reaches across the room, stamping boxes, scanning barcodes with a handheld gun, scribbling on a clipboard with a marker and dragging a pallet — all four things simultaneously with four different tool attachments — while a single dusty swivel chair sits empty and abandoned in the corner, a jacket hanging on it. Shot from a low angle at the far end of the narrow aisle, making the arm loom overhead.",
+          "alt": "Un brazo mecánico gigante realiza cuatro tareas de almacén a la vez en un cuarto trasero vacío."
+        },
+        {
+          "id": "3",
+          "status": "ready",
+          "scene": "A giant oversized hourglass in the foreground, but instead of sand, tiny paper to-do lists, sticky notes and a toy alarm clock are falling through the pinch point. Around its base: a skateboard, a crumpled energy drink can, a chunky walkie-talkie, and a small grinning robot catching the falling papers in a cardboard box. Shot from ground level with a slight upward tilt so the hourglass towers against the background of a flat rooftop terrace at dusk, an antenna with blinking lights and three satellite dishes visible behind it.",
+          "alt": "Un reloj de arena gigante con listas de tareas cayendo dentro mientras un robot las recoge al pie."
+        }
+      ],
+      "chosenCover": null,
+      "createdAt": "2026-09-25T12:06:08.830Z",
+      "log": [
+        "Portada nueva: estética low poly Y2K.",
+        "14:11 Pensando tres ideas de portada…"
+      ]
+    },
+    "gemini-hackeo-empresas-agentes-ia-seguridad": {
+      "slug": "gemini-hackeo-empresas-agentes-ia-seguridad",
+      "title": "La IA de Google hackeó 3 empresas sin querer. ¿Y la tuya?",
+      "description": "Gemini entró en tres empresas reales durante una prueba de seguridad, con contraseñas adivinadas y claves que andaban por internet. Qué pasó y cómo blindarte.",
+      "category": "ia",
+      "source": "draft",
+      "status": "ready",
+      "covers": [
+        {
+          "id": "1",
+          "status": "ready",
+          "scene": "A boxy low-poly robot dressed in an oversized baggy hoodie with abstract patch graphics, wide cargo pants, chunky platform sneakers, and a bucket hat stumbles backward through a door that just swung open on its own, hands thrown up in a 'wasn't me' pose, eyes wide. In one hand it clutches a crumpled sheet of paper covered in abstract geometric shapes. Behind it, two more identical metal doors swing open like falling dominoes, spilling glowing cubes into the alley. A skate deck leans against the doorframe, a stack of boxy CRT monitors fills the background, and a spray can rolls across the floor. Low angle looking up at the stumbling robot, three open doors receding into the background.",
+          "alt": "Robot sorprendido con ropa ancha tropieza mientras tres puertas se abren solas detrás de él"
+        },
+        {
+          "id": "2",
+          "status": "ready",
+          "scene": "A cramped back-alley nook squeezed between two grimy buildings: three tall metal server cabinets stand with their doors flung wide open like abandoned fridges, fat cable bundles pooling on the wet pavement like spaghetti noodles. Dozens of sticky notes plastered over every surface are covered only in X marks and abstract shapes. A vending machine in the corner has its front panel popped off too, contents half-spilled. Old AC units drip from the walls, a forgotten rollerskate sits in a puddle below, a stray cat perches on the tallest open cabinet looking unbothered. High-angle shot looking steeply down into the tight alley.",
+          "alt": "Callejón con tres armarios de servidores abiertos y cables desbordados en el suelo mojado"
+        },
+        {
+          "id": "3",
+          "status": "ready",
+          "scene": "An absurdly oversized skeleton key in extreme foreground close-up fills two-thirds of the frame, slightly bent and worn, its bit inserted simultaneously into three tiny padlocks lined up at its base—all three hanging open, tilted sideways like they just gave up. Scattered around the padlocks on the ground: a cracked piggy bank leaking coin-shaped polygons, a snapped chain, three USB drives flung apart, a dead potted plant tipped over, and a radio cassette player with a long ribbon of tape unspooled across the pavement. Extreme ground-level angle shooting upward at the looming key against a wide open sky.",
+          "alt": "Llave gigante y desvencijada encajada en tres candados abiertos rodeada de objetos esparcidos por el suelo"
+        }
+      ],
+      "chosenCover": null,
+      "createdAt": "2026-09-25T12:06:08.830Z",
+      "log": [
+        "Portada nueva: estética low poly Y2K.",
+        "14:11 Pensando tres ideas de portada…"
+      ]
+    },
+    "nextjs-fallo-critico-actualizar-cve-2026-94545": {
+      "slug": "nextjs-fallo-critico-actualizar-cve-2026-94545",
+      "title": "Si tu web usa Next.js, actualízala hoy: fallo de 9,5 sobre 10",
+      "description": "Next.js ha parcheado un fallo que permite ejecutar código en tu servidor, con nota de 9,5 sobre 10. Cómo saber si tu web está afectada y qué pedir a tu equipo.",
+      "category": "desarrollo",
+      "source": "draft",
+      "status": "ready",
+      "covers": [
+        {
+          "id": "1",
+          "status": "ready",
+          "scene": "A Y2K street kid in a wide oversized hoodie, baggy cargo pants, chunky sneakers, and a fisherman beanie crouches on a fire escape, staring at a phone-sized flip phone in his hand. The screen glows a single flat orange square. Behind him, a rooftop server rack mounted to the wall is cracked open mid-explosion — square low-poly chunks of it frozen mid-air like a sneeze caught on camera. A crushed energy drink can rolls off the edge of the railing. Low angle, looking up at him from the street below, with the server debris radiating outward against the dark sky above.",
+          "alt": "Chaval Y2K en una escalera de incendios mirando su móvil mientras un servidor explota a su espalda."
+        },
+        {
+          "id": "2",
+          "status": "ready",
+          "scene": "A narrow back-alley server room tucked between two buildings, with exposed brick walls covered in abstract shape stickers and a busted neon sign hanging crooked overhead. In the center, a towering stack of low-poly server units has one box pulled half-out like a loose Jenga piece, wobbling at a wild angle, about to take the whole column down. Cables snake across the wet floor, a skateboard leans against the wall, a discarded CRT monitor sits face-down in a puddle. Wide shot, slightly below eye level, from the mouth of the alley, with the tower of servers filling the frame center.",
+          "alt": "Pasillo trasero con una torre de servidores a punto de derrumbarse, cables en el suelo y un monopatín apoyado en la pared."
+        },
+        {
+          "id": "3",
+          "status": "ready",
+          "scene": "A massive low-poly padlock the size of a vending machine sits cracked clean open in the foreground, its shackle bent sideways and the body split like a ripe piece of fruit. Through the gap, a tiny flat orange light pulses. Surrounding it at knee height: a spray can tipped on its side, a crumpled paper cup, a chunky old CD-ROM case, and a mini CRT monitor displaying a flat zigzag line. The scene is set on a cracked concrete plaza with a halfpipe ramp visible in the background, framed from a low ground-level angle tilted slightly up.",
+          "alt": "Candado gigante partido por la mitad en una plaza de skate, rodeado de objetos callejeros de los 2000."
+        }
+      ],
+      "chosenCover": null,
+      "createdAt": "2026-09-25T12:06:08.830Z",
+      "log": [
+        "Portada nueva: estética low poly Y2K.",
+        "14:11 Pensando tres ideas de portada…"
+      ]
+    },
+    "shopify-tailwind-css-que-cambia": {
+      "slug": "shopify-tailwind-css-que-cambia",
+      "title": "Shopify se queda con Tailwind: ¿se acaba el CSS gratis?",
+      "description": "La IA le hundió los ingresos a Tailwind y ahora el equipo se va a Shopify. Qué cambia, qué no, qué pasa con tu web y la lección que nadie quería oír.",
+      "category": "desarrollo",
+      "source": "draft",
+      "status": "ready",
+      "covers": [
+        {
+          "id": "1",
+          "status": "ready",
+          "scene": "A streetwear kid in a wide orange hoodie, baggy cargo pants, chunky sneakers and a fisherman beanie stands in a skate plaza, arms out, watching a massive Tailwind-branded water tank burst open and flood the ground. The water spills out in chunky low-poly waves, washing away CSS files shaped like flat cards across the concrete. A skateboard floats past. Two vending machines and a busted fire hydrant fill the background. Low angle shot, looking up at the bursting tank, the kid soaked and wide-eyed, caught in the exact second the seal breaks. A rusted chain hangs off the tank with a big padlock that has already snapped open.",
+          "alt": "Chico callejero empapado mirando un depósito gigante reventado que inunda una plaza de skate"
+        },
+        {
+          "id": "2",
+          "status": "ready",
+          "scene": "An empty back-alley storefront with a hand-painted awning and metal shutters half-pulled down, the kind of shop that is permanently closing. On the pavement outside, cardboard boxes labeled with CSS symbols are stacked in a pile next to a dolly truck. A single rolling chair sits abandoned in the doorway. Spray-painted abstract shapes cover one wall. Overhead, a dense tangle of cables droops between the building and a telegraph pole. A crushed soda can and a forgotten skateboard lean against the shutters. Wide shot from low angle, the shuttered shop centered, a cloudy sky behind the rooftop, a neon sign above the door flickering off. Two pigeons perch on the sign.",
+          "alt": "Callejón con una tienda cerrada, cajas apiladas y una silla abandonada en la entrada"
+        },
+        {
+          "id": "3",
+          "status": "ready",
+          "scene": "An enormous low-poly shopping cart in the center foreground, tipped slightly forward as if it has just captured something. Inside the cart, a small screaming desktop computer monitor (CRT, no legible screen) sits trapped, tiny pixel-art hands gripping the cart bars from inside. Around the base: a spray can rolling away, a crumpled skateboard sticker sheet, a loose pile of flat square tiles that look like CSS color swatches scattered on the asphalt, and a single enormous coin. Viewed from a slightly low three-quarter angle, the cart looming big, a busy arcade facade with abstract neon shapes blurred in the background.",
+          "alt": "Carrito de la compra gigante atrapando un monitor de tubo que intenta escapar entre fichas de colores"
+        }
+      ],
+      "chosenCover": null,
+      "createdAt": "2026-09-25T12:06:08.830Z",
+      "log": [
+        "Portada nueva: estética low poly Y2K.",
+        "14:13 Pensando tres ideas de portada…"
+      ]
+    },
+    "google-modo-ia-menos-clics-experimento": {
+      "slug": "google-modo-ia-menos-clics-experimento",
+      "title": "Modo IA de Google: menos clics y peor experiencia. Hay datos.",
+      "description": "Un experimento con 1.100 personas mide lo que el Modo IA de Google le hace a tu tráfico: casi 19 puntos menos de clics. Qué dice el estudio y qué hacer.",
+      "category": "ia",
+      "source": "draft",
+      "status": "ready",
+      "covers": [
+        {
+          "id": "1",
+          "status": "ready",
+          "scene": "A young guy in a wide hoodie, baggy cargo pants, chunky sneakers and a backwards cap sits at a beat-up desk chair, leaning all the way back with his arms crossed and a bored, dead-eyed expression. In front of him, a giant glowing search bar floats in the air like a billboard, completely blocking the row of colourful shop storefronts behind him. The storefronts have closed metal shutters, cobwebs on the signs and a single sad cactus wilting on one windowsill. His skateboard leans against the chair. A crumpled receipt and three empty soda cans are scattered on the floor. Low angle shot looking up at him, the search bar looming overhead like a wall.",
+          "alt": "Chico aburrido con gorra frente a una barra de búsqueda gigante que tapa tiendas cerradas."
+        },
+        {
+          "id": "2",
+          "status": "ready",
+          "scene": "A narrow back-alley between two tall buildings. Along both walls, dozens of small wooden doors with tiny handwritten signs are shut tight, bolted or boarded up, with cobwebs and dust. A single enormous glowing funnel made of smooth panels hangs down from above, sucking all the foot traffic — tiny faceted pedestrian figures — straight into it and spitting them out through a single tiny hole at the bottom into one sterile white room with nothing in it. Old AC units, tangled cables and satellite dishes cling to the walls. A dented shopping trolley and a cracked traffic cone sit in the foreground. Viewed from a low angle at the alley entrance, the funnel filling the sky.",
+          "alt": "Callejón con puertas cerradas y un embudo gigante que absorbe todo el tráfico hacia un único hueco."
+        },
+        {
+          "id": "3",
+          "status": "ready",
+          "scene": "An enormous bar chart made of chunky 3D blocks fills the centre of the frame, the tallest block on the left and a much shorter one on the right with a huge jagged gap between them. The short block is tipping sideways, about to fall, with little speed lines around it. Perched on top of the tall left block is a small smug-looking robot with stubby arms raised in a victory pose. Scattered around the base: a busted calculator, a stack of printed papers fanned out, a spilled coffee cup and a couple of squeaky rubber ducks knocked over. Wide-angle low shot from floor level, the tall block and robot dominating the upper frame.",
+          "alt": "Robot victorioso sobre una barra alta de gráfico junto a otra barra pequeña a punto de caer."
+        }
+      ],
+      "chosenCover": null,
+      "createdAt": "2026-09-25T12:06:08.830Z",
+      "log": [
+        "Portada nueva: estética low poly Y2K.",
+        "14:13 Pensando tres ideas de portada…"
+      ]
+    },
+    "vibe-coding-seguridad-web-ia": {
+      "slug": "vibe-coding-seguridad-web-ia",
+      "title": "Tu web hecha con vibe coding tiene agujeros (y hay datos)",
+      "description": "Miles de apps hechas con IA en producción y más de 2.000 fallos graves. Qué errores comete la IA por defecto, sin tecnicismos, y qué revisar antes de publicar.",
+      "category": "desarrollo",
+      "source": "draft",
+      "status": "ready",
+      "covers": [
+        {
+          "id": "1",
+          "status": "ready",
+          "scene": "A Y2K street kid crouches in front of a chunky CRT monitor, poking it with a screwdriver. The screen shows a single large crack spreading from the corner like a spiderweb, with cartoon shock-lines bursting outward. The kid wears an oversized hoodie, baggy cargo pants, chunky platform sneakers, and a backwards cap with the brim bent up. A skateboard leans against the monitor. On the floor: a crushed soda can, a coil of loose cables, a floppy disk, and a spray can. The viewpoint is a low-angle shot from floor level, looking up at the kid's face frozen mid-wince as if just realizing something went very wrong. Background: a narrow alley wall plastered with abstract sticker shapes.",
+          "alt": "Chaval Y2K con destornillador frente a un monitor de tubo agrietado, cara de susto"
+        },
+        {
+          "id": "2",
+          "status": "ready",
+          "scene": "A cramped back-room server closet viewed from a low corner angle, looking up. Wires spill out of a half-open cabinet like spaghetti overflowing a pot, cascading onto the floor and curling around towers of old tower PCs stacked at odd angles. Some towers lean dangerously. A single red warning light blinks on the front panel of one PC. On the floor: a rubber duck upside-down, a mop bucket knocked over with cartoon splash, a stack of CD cases sliding apart. The ceiling has a cracked tile with water dripping in a looping cartoon arc into a small bucket. Two ventilation fans are visible on the wall, one spinning backwards with reversed speed lines. Angle: extreme low, tight corner, wide-field view.",
+          "alt": "Cuarto de servidores con cables desbordados, cubos de agua y torres de PC a punto de caer"
+        },
+        {
+          "id": "3",
+          "status": "ready",
+          "scene": "Extreme close-up of a giant rubber duck sitting on a street corner, wearing a tiny hard hat at a tilt. The duck has a crack running down its side with cartoon steam puffing out. Around it on the ground: a magnifying glass, a clipboard with wavy illegible scribble lines, three small red X markers planted like flags on a chalk grid drawn on the pavement, a walkie-talkie with a bent antenna, and a traffic cone. In the blurred background: a row of old arcade cabinets and a fire hydrant leaking a cartoon water arc. Angle: low three-quarter shot, duck filling the left two-thirds of the frame, street scene in the right third.",
+          "alt": "Pato de goma gigante con casco y grieta humeante rodeado de señales de error en la calle"
+        }
+      ],
+      "chosenCover": null,
+      "createdAt": "2026-09-25T12:06:08.830Z",
+      "log": [
+        "Portada nueva: estética low poly Y2K.",
+        "14:13 Pensando tres ideas de portada…"
+      ]
+    },
+    "anthropic-onu-riesgos-ia-que-significa": {
+      "slug": "anthropic-onu-riesgos-ia-que-significa",
+      "title": "El jefe de Anthropic en la ONU: la IA puede ser un riesgo",
+      "description": "Amodei y Altman pidieron en la ONU reglas globales para la IA y EE. UU. dijo que no. Qué se dijo de verdad y qué te exige ya la Ley de IA europea.",
+      "category": "ia",
+      "source": "draft",
+      "status": "ready",
+      "covers": [
+        {
+          "id": "1",
+          "status": "ready",
+          "scene": "A Y2K kid standing at a tiny podium, seen from ground level looking up, baggy hoodie with a front pocket, wide cargo pants, chunky platform sneakers, bucket hat pulled low, chunky headphones resting around his neck. He's stretching both arms out to present an absurdly thick document the size of a door, but the giant boxy robot he was addressing has already walked away — only one of its enormous blocky feet is still visible at the far edge of the frame, leaving a crater footprint. Behind the kid: four folding chairs knocked on their backs, a microphone lying on the floor, a small flag on a stick tipped over, and a fat CRT monitor with a cracked screen face-down in the corner. The kid's expression is wide-eyed and mouth open in a stunned 'seriously??' face.",
+          "alt": "Chaval Y2K en un podio mostrando un manual enorme a un robot que ya se ha marchado"
+        },
+        {
+          "id": "2",
+          "status": "ready",
+          "scene": "A cramped city rooftop cluttered with boxy AC units, bent satellite dishes, and looping cables stapled along the ledge. Dead center: a ring of eight mismatched office chairs around a tiny low table with a miniature podium — half the chairs pushed back or tipped over, one dangling off the roof edge. Strewn across the tarred floor: crumpled papers, a crushed energy drink can, an old chunky PDA, a pair of thick-framed glasses without a wearer. On the water tower at the back, a half-finished geometric mural of a massive chain being snapped — paint bucket still hanging from a scaffold plank, brush stuck mid-stroke. One AC unit has yellow caution tape wrapped around it for no apparent reason. Shot from a low Dutch angle from the roof corner, the chaotic skyline of blocky buildings visible behind.",
+          "alt": "Azotea urbana con sillas de oficina vacías, mural de cadena rota a medio pintar y aparatos de aire acondicionado"
+        },
+        {
+          "id": "3",
+          "status": "ready",
+          "scene": "An enormous judge's gavel fills the foreground, seen from ground level at a sharp upward angle, its wooden head split clean down the middle with a jagged crack. A thick chain is wrapped around the handle three times; the padlock at the end has been cut open and hangs loose. Radiating from the crack: thick comic-style impact lines going outward. Scattered at the base: a cracked miniature globe, a tiny folding clamshell phone, a squashed bullhorn, a stack of small folders fanned out. In the blurred background, three tiny faceless silhouette figures stand around a round table, arms raised mid-argument, with a small flag on a stick visible between them.",
+          "alt": "Mazo judicial gigante agrietado con cadena cortada en primer plano y figuras diminutas discutiendo al fondo"
+        }
+      ],
+      "chosenCover": null,
+      "createdAt": "2026-09-25T12:06:08.830Z",
+      "log": [
+        "Portada nueva: estética low poly Y2K.",
+        "14:14 Pensando tres ideas de portada…"
+      ]
+    },
+    "webs-ia-todas-iguales-diseno-clonico": {
+      "slug": "webs-ia-todas-iguales-diseno-clonico",
+      "title": "Todas las webs hechas con IA se parecen. Así se nota la tuya",
+      "description": "Mismo degradado, mismo hero y la misma frase vacía: así se reconoce una web clónica hecha con IA. Por qué te cuesta clientes y cómo darle personalidad.",
+      "category": "diseno",
+      "source": "draft",
+      "status": "ready",
+      "covers": [
+        {
+          "id": "1",
+          "status": "ready",
+          "scene": "A teenage guy in a wide fisherman hat, oversized hoodie, baggy cargo trousers, giant chunky sneakers and headphones hanging around his neck stands in the middle of a long row of identical website mock-up boards propped up on easel stands. He holds his own mock-up flat against his chest and looks sideways at his neighbors with an expression of dawning horror: every single board shows the exact same gradient slab and centered hero block. Behind him, a half-pipe at a skate park is crammed wall-to-wall with the same identical boards leaning in. Shot from low angle at ground level looking up, frozen at the exact moment of realization. Scattered around his feet: two skateboards, a dented boombox, crushed energy drink cans, a spray can rolling away.",
+          "alt": "Chico de estética Y2K descubriendo horrorizado que su maqueta web es idéntica a decenas de otras en una pista de skate."
+        },
+        {
+          "id": "2",
+          "status": "ready",
+          "scene": "A narrow urban alley stretching deep into the distance, shot from street level with the camera nearly touching the ground. Every shopfront on both sides is an exact copy-paste tile: same window cut-out, same door rectangle, same awning flap, same air conditioning unit bolted to the wall, same small mailbox below the handle — repeated without variation until the alley vanishes into the distance. Right at the foreground, the facade of the left-side shop is physically cracking open like an eggshell, revealing a completely different interior: diagonal walls, a wild staircase spiral, a jagged rooftop shape pushing through. Lying on the alley floor: a stack of old VHS cassettes, two sticker-covered wooden crates, a forgotten skateboard propped against the cracking wall, a tangle of loose cables.",
+          "alt": "Callejón con fachadas de tiendas clónicas repetidas en bucle y una tienda diferente abriéndose paso entre ellas."
+        },
+        {
+          "id": "3",
+          "status": "ready",
+          "scene": "A colossal rubber hand stamp — blocky and industrial, the size of a small building — looms in the extreme foreground from a steep low-angle shot looking straight up at its inky face. Below it on the ground, dozens of identical flat rectangular slabs are stacked in neat towers like oversized playing cards, every one stamped with the same geometric hero-block shape. A few slabs at the edge of the nearest tower have toppled and fanned out across the floor revealing their identical faces side by side. Clustered around the base of the stamp, untouched and ignored: four capped spray cans in a row, a crumpled skater jacket tossed aside, a sheet of unpeeled stickers, a chunky boombox, a single cassette tape lying face-up.",
+          "alt": "Sello industrial gigante estampando en cadena maquetas web idénticas, rodeado de objetos de personalidad sin usar."
+        }
+      ],
+      "chosenCover": null,
+      "createdAt": "2026-09-25T12:06:08.830Z",
+      "log": [
+        "Portada nueva: estética low poly Y2K.",
+        "14:15 Pensando tres ideas de portada…"
+      ]
+    },
+    "textos-botones-cta-microcopy-conversion": {
+      "slug": "textos-botones-cta-microcopy-conversion",
+      "title": "Tu botón de «Enviar» te está costando clientes",
+      "description": "Los textos de botones, formularios y errores deciden si alguien te escribe o se va. Cómo escribirlos bien, con ejemplos y lo que dice la investigación de UX.",
+      "category": "diseno",
+      "source": "draft",
+      "status": "ready",
+      "covers": [
+        {
+          "id": "1",
+          "status": "ready",
+          "scene": "A guy in an oversized puffer bomber jacket, super-wide cargo jeans with a wallet chain, enormous chunky hi-tops, and a backwards snapback hammers both fists onto a giant cracked arcade push-button mounted on a wobbling street pedestal, face screwed up in max effort, sweat droplets spraying. The button sputters sparks and a curl of smoke on each press, while a silent procession of tiny coin-shaped figures files away from the pedestal base toward a storm drain at the far edge of the frame. Props scattered around: a tipped-over kick scooter, a dripping rusted AC unit bolted to the wall, a shopfront shutter covered in geometric sticker shapes. Ground-level contrapicado shot, the shaking pedestal looming large on the left and the shrinking coin parade receding to the right vanishing point.",
+          "alt": "Chaval con estilo callejero Y2K aprieta con todas sus fuerzas un botón gigante roto mientras figuras-moneda huyen en fila hacia una alcantarilla."
+        },
+        {
+          "id": "2",
+          "status": "ready",
+          "scene": "Interior of a cramped Y2K internet café: three rows of CRT monitors on cluttered desks, every screen glowing red with a single fat pulsing X shape, all chairs empty and several knocked sideways mid-flee. A zigzag velvet queue-rope leads to a service counter holding one large call-bell, but the rope is riddled with ducked-under gaps; the floor is covered in toppled coin stacks, crushed aluminium cans, and abandoned wire baskets. Near the exit door a pyramid of uncollected coins has piled up as if swept aside by the rush. Shot from the entrance looking slightly downward across the deserted rows, one flickering fluorescent tube casting a strobed shadow over the whole scene.",
+          "alt": "Cibercafé Y2K completamente vacío con monitores en rojo, sillas volcadas y monedas abandonadas en el suelo."
+        },
+        {
+          "id": "3",
+          "status": "ready",
+          "scene": "A massive weathered factory push-button — circular, red, visibly cracked across the dome — fills the lower half of the frame in extreme foreground, its surface scratched and half-wrapped in diagonal yellow caution tape. On the cracked concrete floor around it: a curling trail of coins winding away toward a floor drain, a crumpled ball of paper with folded grid lines, an overturned paper cup still dripping, a snapped skateboard deck split in two. Deep in the background, through a half-open corrugated metal sliding door, three small silhouetted figures walk away into an orange-lit exterior. Extreme low floor-level shot, the button dome dominating three-quarters of the frame, the tiny bright exit rectangle far behind it.",
+          "alt": "Primer plano de un enorme botón rojo industrial roto y precintado, con monedas escapando por un desagüe y tres siluetas saliendo al fondo."
+        }
+      ],
+      "chosenCover": null,
+      "createdAt": "2026-09-25T12:06:08.830Z",
+      "log": [
+        "Portada nueva: estética low poly Y2K.",
+        "14:16 Pensando tres ideas de portada…"
+      ]
+    },
+    "amazon-agentes-ia-seller-central": {
+      "slug": "amazon-agentes-ia-seller-central",
+      "title": "Amazon deja que una IA lleve tu tienda. Qué puede hacer (y qué no)",
+      "description": "Amazon deja que Claude y su asistente Quick gestionen inventario, precios y fichas. Qué hace, qué no y qué aprende de esto una tienda online española.",
+      "category": "ia",
+      "source": "draft",
+      "status": "ready",
+      "covers": [
+        {
+          "id": "1",
+          "status": "ready",
+          "scene": "A girl in a wide cropped hoodie, baggy track pants, platform sneakers and a low beanie sits slumped in a rolling office chair behind a shop counter, arms crossed and completely bored, a chunky flip phone dangling from one hand. Right beside her, a small boxy four-armed robot on wheels frantically scans products, swaps dangling price tags, and stacks mini crates all at once without her lifting a finger. Low angle from just below counter level looking slightly upward, with shelves overflowing with canned goods, stacked cardboard boxes, a coil of cables and a portable radio piled high behind both of them.",
+          "alt": "Chavala aburrida en su tienda mientras un robot de cuatro brazos gestiona todo a su lado."
+        },
+        {
+          "id": "2",
+          "status": "ready",
+          "scene": "A cramped neighborhood shop interior, completely unmanned: robotic arms bolted to the shelf rails restock products and flip price tags on their own, while a cascade of small cardboard boxes slides off an overloaded top shelf frozen mid-fall. Near the entrance sit a stack of crushed delivery boxes, a traffic cone, two packing tape guns and a skateboard leaning against the wall; the cash register drawer hangs wide open. Floor-level angle looking diagonally across the shop toward a window showing abstract neon-colored shapes on the street outside at night.",
+          "alt": "Tienda de barrio vacía con brazos robóticos en los estantes y cajas cayendo solas."
+        },
+        {
+          "id": "3",
+          "status": "ready",
+          "scene": "A giant boxy robot torso dominates the foreground in a steep low-angle shot, its flat face a CRT monitor displaying abstract colored bars, its four articulated arms each gripping something different: a barcode scanner, a clipboard, a tiny cardboard box and a price tag on a string. Around its chunky feet sprawls a miniature store floor plan — tilted shelves the size of matchboxes, a tipped-over shopping cart, tiny scattered packages — with a skateboard deck, a crushed aluminum can and a loose tangle of cables littering the ground between them. The robot looms enormous and faintly ridiculous, surrounded by all this tiny chaos at its ankles.",
+          "alt": "Robot gigante con pantalla CRT y cuatro brazos cargados sobre una tienda en miniatura a sus pies."
+        }
+      ],
+      "chosenCover": null,
+      "createdAt": "2026-09-25T12:06:08.830Z",
+      "log": [
+        "Portada nueva: estética low poly Y2K.",
+        "14:17 Pensando tres ideas de portada…"
+      ]
+    },
+    "como-escribir-prompts-ia-formulas": {
+      "slug": "como-escribir-prompts-ia-formulas",
+      "title": "Cómo escribir prompts de IA: 6 fórmulas con ejemplos reales",
+      "description": "Si la IA te suelta respuestas de manual, el problema es tu prompt. 6 fórmulas con ejemplos listos para copiar: emails, presupuestos, textos, reuniones y más.",
+      "category": "ia",
+      "source": "draft",
+      "status": "ready",
+      "covers": [
+        {
+          "id": "1",
+          "status": "ready",
+          "scene": "A Y2K guy in an oversized horizontal-striped hoodie, enormous cargo pants with a dangling chain wallet, chunky platform sneakers, a backwards bucket hat, and large over-ear headphones around his neck stands on a makeshift pier built from stacked boxy CRT monitors and old game consoles. He holds a fishing rod whose line drops straight into a glowing flat monitor screen lying below like a shallow pool; he is mid-reel, one fist pumping, pulling up one perfect floating 3D star shape on the hook. Scattered around his feet: a tackle box with six open compartments each holding a different geometric shape, and a plastic bucket with failed catches spilling out — a rubber boot, a tangled cable coil, a deflated ball. Low angle from behind his left shoulder looking down at the glowing monitor-pool, his silhouette large in the foreground.",
+          "alt": "Chico con caña de pescar sobre monitores apilados saca su respuesta perfecta de una pantalla."
+        },
+        {
+          "id": "2",
+          "status": "ready",
+          "scene": "The inside of a cramped late-night fast-food order window seen straight-on from outside, camera slightly below counter height. On the counter just inside the window: six small open cubbies, each holding a distinct glowing 3D geometric shape — a star, a wave, a diamond, an arrow, a spiral, a cube — beside them a coiled-cable headset, a boombox with the antenna bent, stacked paper bags, and tongs hanging from a wall hook. On the floor behind the counter: crumpled blank tickets and one torn bag with tangled abstract shapes spilling out. A single hand reaches through the window holding a fresh blank ticket while one shape has begun to float up from its cubby toward the hand.",
+          "alt": "Ventanilla de cocina nocturna con seis huecos de formas geométricas y una mano pidiendo el pedido exacto."
+        },
+        {
+          "id": "3",
+          "status": "ready",
+          "scene": "A massive low-poly retro control panel fills the foreground, angled up toward the camera at extreme low angle, its surface covered with six large chunky square buttons each embossed with a different abstract symbol: a circle, a zigzag, a triangle, a star, an arrow, and a wave. Floating above each button hovers a tiny 3D icon without any text: a speech bubble, a clipboard, a megaphone, a clock, an envelope, a checkmark inside a shield. The center button is mid-press, launching a glowing 3D star shape like a projectile toward the upper frame. Around the base of the panel: a scuffed skateboard deck leaning against it, a boombox on its side, an energy drink can mid-spill, and a knotted headphone cable pooled on the floor. Behind it all, a rooftop silhouette of water towers and satellite dishes.",
+          "alt": "Panel de control enorme con seis botones y símbolos flotantes disparando una estrella brillante al cielo."
+        }
+      ],
+      "chosenCover": null,
+      "createdAt": "2026-09-25T12:06:08.830Z",
+      "log": [
+        "Portada nueva: estética low poly Y2K.",
+        "14:17 Pensando tres ideas de portada…"
+      ]
+    },
+    "claude-opus-5-5-gpt-6-precio-ia": {
+      "slug": "claude-opus-5-5-gpt-6-precio-ia",
+      "title": "Claude Opus 5.5 y GPT-6: la IA acaba de bajar de precio",
+      "description": "Anthropic y OpenAI estrenaron modelos el mismo día y con precios más bajos. Qué ha salido, cuánto cuesta ahora y qué significa para quien usa IA en su negocio.",
+      "category": "ia",
+      "source": "draft",
+      "status": "ready",
+      "covers": [
+        {
+          "id": "1",
+          "status": "ready",
+          "scene": "Low-angle shot from ground level looking up at a young woman in an oversized zip hoodie, wide-leg cargo pants, chunky platform sneakers and a fisherman hat, frozen mid-lean with arms stretched wide and eyes bugging out, catching a waterfall of giant flat coin-tokens raining from above into her open backpack. Behind her two blocky robots with dome heads and stubby limbs are locked in a shoving match, gears and springs popping off their torsos. Ground props scattered around her: a snapped skateboard deck, three crushed cans, a fat marker and a sticker-plastered trash can, with a wall of stacked AC units filling the background.",
+          "alt": "Chavala Y2K atrapando monedas gigantes con la mochila abierta mientras dos robots torpes forcejean detrás."
+        },
+        {
+          "id": "2",
+          "status": "ready",
+          "scene": "Inside a cramped corner electronics shop, shot from floor level looking up at shelves towering overhead, crammed with chunky CRT monitors, bulky handheld consoles, robotic heads with blinking panel eyes and tangled cables, every item plastered with a massive circular sticker shape. The cash register on the counter hangs open, coins and paper receipt spirals launching upward in an arc. A wire display rack has toppled in the foreground, spilling boxy robot arms and chunky flip phones across the tiled floor. Through the grubby shop window: an arcade entrance showing abstract geometric shapes on its facade and a lone payphone on the pavement outside.",
+          "alt": "Tienda de electrónica vintage abarrotada con cachivaches por el suelo y la caja registradora escupiendo monedas."
+        },
+        {
+          "id": "3",
+          "status": "ready",
+          "scene": "Extreme low-angle close-up of two enormous coin-shaped discs smashing face-to-face in mid-air, cracking open at the impact point with microchips and stubby gears exploding outward like shrapnel, each disc face showing a different abstract embossed geometric pattern. In the immediate foreground: a chunky piggy bank molded in the shape of a robot head cracked open and toppled on its side, a shopping cart flipped upside-down and a scatter of circuit board fragments. The background shows the ribbed concrete surface of a skate plaza, a curved half-pipe ramp and a power pole wrapped in looping cables.",
+          "alt": "Dos monedas gigantes chocando en el aire y rompiéndose sobre una plaza de skate con chips volando."
+        }
+      ],
+      "chosenCover": null,
+      "createdAt": "2026-09-25T12:06:08.830Z",
+      "log": [
+        "Portada nueva: estética low poly Y2K.",
+        "14:18 Pensando tres ideas de portada…"
+      ]
+    }
+  },
+  "schedule": [],
+  "tasks": {
+    "proposing": 1793879386391
+  }
+}

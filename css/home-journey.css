@@ -1,0 +1,1560 @@
+/* Home scroll journey: pinned 3D stage + card overlay narrative. */
+
+:root {
+  --j-accent: #ff8222;
+  --j-ink: #080808;
+  --j-text: #ffffff;
+  --j-muted: rgba(255, 255, 255, 0.76);
+  --j-line: rgba(255, 255, 255, 0.18);
+  --j-gutter: clamp(1rem, 4vw, 4rem);
+  --j-card-width: min(35rem, 42vw);
+  --j-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --j-stage-height: 100vh;
+}
+
+@supports (height: 100lvh) {
+  :root {
+    /* lvh: the stage keeps its size when mobile toolbars collapse. */
+    --j-stage-height: 100lvh;
+  }
+}
+
+/* Safari 26 paints the area under its toolbars with the root background.
+   On home that must be the bottom of the sky, not the global orange.
+   home-journey.js updates the html color with the day cycle. */
+html:has(.experience-stage) {
+  background-color: #9bcfea;
+}
+
+html:has(.experience-stage) body {
+  background-color: transparent;
+}
+
+/* ---------------------------------------------------------------------------
+   Pinned stage */
+
+.experience {
+  position: relative;
+  isolation: isolate;
+}
+
+.experience-stage {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  height: var(--j-stage-height);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Pull the scrolling content up so it slides over the pinned stage. The
+   negative margin lives on the hero, not on the stage: a negative
+   margin-bottom on a sticky element extends how long it stays stuck, so the
+   stage would keep pinned while the site footer scrolls in. */
+.experience-stage + .hero {
+  margin-top: calc(var(--j-stage-height) * -1);
+}
+
+.experience-stage {
+  /* Day cycle, written every frame by home-model.js (0..1). */
+  --dusk: 0;
+  --night: 0;
+  /* Hidden behind the sky layers. Safari 26 samples this sticky stage to
+     tint its bottom toolbar, so match the bottom of the visible sky. */
+  background-color: color-mix(
+    in srgb,
+    color-mix(in srgb, #9bcfea, #ffa25a calc(var(--dusk) * 100%)),
+    #29285a calc(var(--night) * 100%)
+  );
+}
+
+.experience-sky,
+.experience-dusk,
+.experience-night {
+  position: absolute;
+  inset: 0;
+}
+
+.experience-sky {
+  z-index: 0;
+  background:
+    radial-gradient(circle at 78% 18%, rgba(255, 255, 255, 0.22), transparent 14%),
+    linear-gradient(180deg, #347fb5 0%, #4f9fd1 52%, #9bcfea 100%);
+}
+
+.experience-dusk {
+  z-index: 1;
+  opacity: var(--dusk);
+  background:
+    radial-gradient(circle at 70% 78%, rgba(255, 186, 110, 0.55), transparent 42%),
+    linear-gradient(180deg, #2c3570 0%, #7b5a93 38%, #e0747a 68%, #ffa25a 100%);
+  will-change: opacity;
+}
+
+.experience-night {
+  z-index: 1;
+  opacity: var(--night);
+  overflow: hidden;
+  background:
+    radial-gradient(120% 60% at 50% 115%, rgba(88, 92, 190, 0.5), transparent 65%),
+    radial-gradient(circle at 80% 16%, rgba(190, 205, 255, 0.16), transparent 30%),
+    linear-gradient(180deg, #02040d 0%, #070c26 40%, #151b4a 78%, #29285a 100%);
+  will-change: opacity;
+}
+
+/* The moon rises along a short arc while night falls, from behind the city
+   canvas that sits above it: low, large and amber near the horizon, then
+   higher, smaller and silver once night settles. Sized in em (1em = the
+   disc) so shading, glow and halo scale with it. */
+.experience-moon {
+  --rise: calc(1 - var(--night));
+  position: absolute;
+  top: 12%;
+  right: 14%;
+  width: 1em;
+  aspect-ratio: 1;
+  font-size: clamp(3.5rem, 7vw, 6.5rem);
+  border-radius: 50%;
+  background:
+    /* Craters: dark floor with a sunlit rim. */
+    radial-gradient(circle at 30% 74%, rgba(118, 112, 96, 0.5) 0 3.4%, rgba(255, 252, 236, 0.6) 4.4%, transparent 5.8%),
+    radial-gradient(circle at 71% 29%, rgba(118, 112, 96, 0.42) 0 2.4%, rgba(255, 252, 236, 0.55) 3.3%, transparent 4.5%),
+    radial-gradient(circle at 57% 83%, rgba(118, 112, 96, 0.38) 0 1.9%, rgba(255, 252, 236, 0.5) 2.7%, transparent 3.7%),
+    radial-gradient(circle at 80% 58%, rgba(118, 112, 96, 0.32) 0 1.5%, rgba(255, 252, 236, 0.4) 2.2%, transparent 3%),
+    radial-gradient(circle at 21% 40%, rgba(118, 112, 96, 0.3) 0 1.4%, transparent 2.4%),
+    /* Maria: soft blue-grey plains. */
+    radial-gradient(ellipse 27% 20% at 40% 33%, rgba(122, 128, 142, 0.46), transparent),
+    radial-gradient(ellipse 17% 25% at 61% 50%, rgba(122, 128, 142, 0.4), transparent),
+    radial-gradient(ellipse 23% 14% at 47% 65%, rgba(122, 128, 142, 0.32), transparent),
+    radial-gradient(ellipse 12% 17% at 25% 57%, rgba(122, 128, 142, 0.28), transparent),
+    radial-gradient(ellipse 10% 8% at 66% 70%, rgba(122, 128, 142, 0.24), transparent),
+    /* Surface, lit from the upper right. */
+    radial-gradient(circle at 64% 30%, #fffef8 0%, #f2edda 42%, #dcd5bb 76%, #b9b196 100%);
+  box-shadow:
+    /* Terminator: a thin gibbous shadow on the lower left limb. */
+    inset 0.16em -0.1em 0.28em rgba(28, 32, 78, 0.5),
+    inset 0.04em -0.02em 0.06em rgba(28, 32, 78, 0.35),
+    /* Glow. */
+    0 0 0.4em 0.04em rgba(236, 240, 255, 0.5),
+    0 0 1.5em 0.35em rgba(150, 170, 255, 0.2);
+  transform:
+    translate3d(calc(var(--rise) * -8vw), calc(var(--rise) * 32vh), 0)
+    rotate(calc(var(--rise) * -14deg))
+    scale(calc(1 + var(--rise) * 0.22));
+  will-change: transform;
+}
+
+/* Halo: closest-side so 100% = box radius (2.1em); the limb sits at ~24%.
+   The ramp starts just inside the limb so there is no gap or hard ring. */
+.experience-moon::before {
+  content: "";
+  position: absolute;
+  inset: -1.6em;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle closest-side,
+    transparent 0 20%,
+    rgba(214, 224, 255, 0.2) 25%,
+    rgba(180, 194, 255, 0.08) 45%,
+    rgba(160, 176, 255, 0.02) 70%,
+    transparent 100%
+  );
+  animation: moon-breathe 8s ease-in-out infinite alternate;
+}
+
+/* Horizon tint: the rising moon glows amber through the dusk haze. */
+.experience-moon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 64% 30%, #ffe2b0, #f39a52 90%);
+  mix-blend-mode: multiply;
+  opacity: calc(var(--rise) * 0.9);
+}
+
+@keyframes moon-breathe {
+  from {
+    opacity: 0.75;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.shooting-star {
+  position: absolute;
+  top: 12%;
+  left: 34%;
+  width: clamp(5rem, 11vw, 9rem);
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(220, 230, 255, 0.5) 70%, #fff);
+  filter: drop-shadow(0 0 4px rgba(200, 215, 255, 0.9));
+  opacity: 0;
+  rotate: 158deg;
+  transform-origin: 100% 50%;
+  animation: shooting-star 11s cubic-bezier(0.3, 0, 0.6, 1) 4s infinite;
+}
+
+.shooting-star + .shooting-star {
+  top: 24%;
+  left: 78%;
+  rotate: 150deg;
+  animation-duration: 17s;
+  animation-delay: 9s;
+}
+
+@keyframes shooting-star {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scaleX(0.2);
+  }
+  2% {
+    opacity: 1;
+  }
+  7% {
+    opacity: 0;
+    transform: translate3d(34vw, 0, 0) scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(34vw, 0, 0) scaleX(1);
+  }
+}
+
+.experience-stage .home-model-canvas {
+  z-index: 2;
+}
+
+.hero {
+  z-index: 1;
+}
+
+/* ---------------------------------------------------------------------------
+   Case study pins (projected from the 3D city every frame) */
+
+.case-pins {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  opacity: 0;
+  transition: opacity 0.6s var(--j-ease);
+}
+
+.case-pins.is-active {
+  opacity: 1;
+}
+
+.case-pin {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--j-text);
+  text-decoration: none;
+  transform: translate3d(-9999px, -9999px, 0);
+  transition: opacity 0.4s var(--j-ease);
+  will-change: transform;
+}
+
+.case-pins.is-active .case-pin {
+  pointer-events: auto;
+}
+
+.case-pin::before {
+  content: "";
+  flex: none;
+  width: 0.8rem;
+  height: 0.8rem;
+  margin: -0.4rem 0 0 -0.4rem;
+  border-radius: 50%;
+  background: var(--j-accent);
+  box-shadow: 0 0 0 0.3rem rgba(255, 130, 34, 0.28);
+  animation: case-pin-pulse 2.4s ease-out infinite;
+}
+
+.case-pin:hover,
+.case-pin:focus-visible,
+.case-pin.is-highlighted {
+  z-index: 1;
+}
+
+.case-pin-label {
+  margin-top: -0.4rem;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--j-line);
+  border-radius: 999px;
+  background: rgba(12, 12, 12, 0.7);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  backdrop-filter: blur(10px);
+  transition:
+    background 0.3s var(--j-ease),
+    color 0.3s var(--j-ease),
+    transform 0.3s var(--j-ease);
+}
+
+.case-pin-label::after {
+  content: " ↗";
+}
+
+.case-pin:hover .case-pin-label,
+.case-pin:focus-visible .case-pin-label,
+.case-pin.is-highlighted .case-pin-label {
+  background: var(--j-accent);
+  color: var(--j-ink);
+  transform: scale(1.08);
+}
+
+.case-pin:focus-visible {
+  outline: none;
+}
+
+.case-pin:focus-visible .case-pin-label {
+  outline: 2px solid var(--j-text);
+  outline-offset: 3px;
+}
+
+/* Hover preview of the live site, above the pin (below it near the top of
+   the screen, to the left near the right edge: see updatePins()). */
+.case-pin-preview {
+  position: absolute;
+  bottom: 1.5rem;
+  left: -0.4rem;
+  width: 15rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 0.9rem;
+  background: var(--j-ink);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(0.5rem) scale(0.96);
+  transform-origin: bottom left;
+  transition:
+    opacity 0.3s var(--j-ease),
+    transform 0.3s var(--j-ease),
+    visibility 0s linear 0.3s;
+}
+
+.case-pin.is-below .case-pin-preview {
+  top: 1.2rem;
+  bottom: auto;
+  transform: translateY(-0.5rem) scale(0.96);
+  transform-origin: top left;
+}
+
+.case-pin.is-flipped .case-pin-preview {
+  right: -0.4rem;
+  left: auto;
+  transform-origin: bottom right;
+}
+
+.case-pin.is-flipped.is-below .case-pin-preview {
+  transform-origin: top right;
+}
+
+.case-pin:hover .case-pin-preview,
+.case-pin:focus-visible .case-pin-preview {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity 0.3s var(--j-ease),
+    transform 0.3s var(--j-ease),
+    visibility 0s;
+}
+
+.case-pin-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 8 / 5;
+  object-fit: cover;
+}
+
+.case-pin-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.85rem;
+  color: var(--j-text);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.case-pin-cta svg {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: var(--j-accent);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.case-pin.is-offscreen {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes case-pin-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 130, 34, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 0.9rem rgba(255, 130, 34, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 130, 34, 0);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Progress rail */
+
+.journey-rail {
+  position: fixed;
+  top: 50%;
+  right: 1.5rem;
+  /* Reset the global nav rules from nav.css. */
+  left: auto;
+  z-index: 90;
+  display: block;
+  width: auto;
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(0.75rem, -50%);
+  transition:
+    opacity 0.5s var(--j-ease),
+    transform 0.5s var(--j-ease);
+}
+
+.journey-rail.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(0, -50%);
+}
+
+.journey-rail ol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+  list-style: none;
+}
+
+.journey-rail a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.25rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+  text-transform: uppercase;
+  transition: color 0.3s var(--j-ease);
+}
+
+.journey-rail-label {
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  white-space: nowrap;
+  transition:
+    max-width 0.45s var(--j-ease),
+    opacity 0.3s var(--j-ease);
+}
+
+.journey-rail a::after {
+  content: "";
+  width: 1rem;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition:
+    width 0.45s var(--j-ease),
+    background 0.3s var(--j-ease);
+}
+
+.journey-rail a:hover,
+.journey-rail a:focus-visible,
+.journey-rail a.is-active {
+  color: var(--j-text);
+}
+
+.journey-rail a:hover .journey-rail-label,
+.journey-rail a:focus-visible .journey-rail-label,
+.journey-rail a.is-active .journey-rail-label {
+  max-width: 7rem;
+  opacity: 1;
+}
+
+.journey-rail a.is-active::after {
+  width: 2rem;
+  background: var(--j-accent);
+}
+
+/* ---------------------------------------------------------------------------
+   Journey layout */
+
+.journey {
+  position: relative;
+  z-index: 1;
+  /* The journey spans the whole viewport above the pinned stage. Only the
+     cards take the pointer, so the map pins behind stay hoverable. */
+  pointer-events: none;
+}
+
+.j-card {
+  pointer-events: auto;
+}
+
+/* Tall beats + sticky cards: the card rises while the camera travels, then
+   holds still for reading while the shot settles. */
+.j-beat {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-height: 140vh;
+  padding: 7rem var(--j-gutter) 5rem;
+}
+
+.j-beat[data-side="right"] {
+  justify-content: flex-end;
+  /* Leave room for the progress rail. */
+  padding-right: calc(var(--j-gutter) + 8rem);
+}
+
+.j-stage--contact .j-beat {
+  align-items: center;
+  min-height: 100vh;
+}
+
+.j-card {
+  position: sticky;
+  top: clamp(6rem, 14vh, 9rem);
+  width: var(--j-card-width);
+  will-change: transform;
+}
+
+.j-stage--contact .j-card {
+  position: relative;
+  top: auto;
+}
+
+/* Keyboard users always see the card they are in. Only keyboard focus: a
+   tapped or clicked link keeps focus and would pin the card visible while
+   the page scrolls on. */
+.j-card:has(:focus-visible),
+.j-card:has(:focus-visible) .j-card-inner {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Except the lead modal fade: the card keeps its focused CTA while it fades
+   out before the modal and when focus returns as it fades back in. */
+.j-card:has(:focus-visible) .j-card-inner {
+  opacity: var(--j-modal, 1) !important;
+}
+
+/* Short landscape screens: a sticky card taller than the viewport would hide
+   its own buttons, so let it scroll normally. */
+@media (max-height: 640px) and (min-width: 901px) {
+  .j-card {
+    position: relative;
+    top: auto;
+  }
+
+  .j-beat {
+    align-items: center;
+    min-height: 120vh;
+  }
+}
+
+/* Clear liquid glass (css/liquid-glass.css): the rim refracts the city
+   behind. A soft shadow keeps the white copy readable over the bright sky. */
+.j-card-inner {
+  position: relative;
+  padding: clamp(1.5rem, 2.4vw, 2.5rem);
+  border-radius: 1.5rem;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.35);
+  /* Entry and exit fades, scrubbed by home-journey.js, and the lead modal
+     fade below. */
+  opacity: calc(var(--j-in, 1) * var(--j-out, 1) * var(--j-modal, 1));
+  transform: perspective(1200px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  /* Back from the lead modal: a long expo-out settle. */
+  transition:
+    transform 0.6s var(--j-ease),
+    translate 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    scale 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    --j-modal 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s;
+}
+
+/* Registered so only this factor transitions: a transition on opacity
+   itself would drag behind the scrubbed --j-in / --j-out. */
+@property --j-modal {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+
+/* Written on every scroll frame: not inherited, so only the card restyles,
+   not its whole subtree. */
+@property --j-in {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+
+@property --j-out {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+
+/* Lead modal opened from this card's CTA (js/lead-modal.js): the card drops
+   a little, shrinks and fades on an in-out curve, and settles back on close.
+   The translate and scale properties compose with the tilt and scroll
+   transforms (and survive the keyboard focus rule's transform: none). The fade ends
+   before the motion, so the card is gone while still easing; the modal
+   waits for that fade (CARD_EXIT_MS in js/lead-modal.js) and the card only
+   returns once the modal has closed. Hidden once gone so it cannot be
+   tabbed to behind the modal. */
+.j-card.is-modal-away .j-card-inner {
+  --j-modal: 0;
+  translate: 0 2.5rem;
+  scale: 0.92;
+  visibility: hidden;
+  transition:
+    transform 0.6s var(--j-ease),
+    translate 0.4s cubic-bezier(0.65, 0, 0.35, 1),
+    scale 0.4s cubic-bezier(0.65, 0, 0.35, 1),
+    --j-modal 0.2s ease-out,
+    visibility 0s 0.4s;
+}
+
+.j-card-inner > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------------------------------------------------------------------------
+   Typography */
+
+.j-card p {
+  text-transform: none;
+}
+
+.j-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--j-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+}
+
+.j-card .j-kicker {
+  text-transform: uppercase;
+}
+
+.j-index {
+  display: inline-block;
+  color: var(--j-accent);
+  font-weight: 600;
+}
+
+.j-title {
+  margin: 0.9rem 0 1.25rem;
+  font-family: var(--f-h);
+  font-size: clamp(3.5rem, 6vw, 6.5rem);
+  font-weight: 700;
+  line-height: 0.86;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.j-card p.j-title {
+  text-transform: uppercase;
+}
+
+.j-title--xl {
+  font-size: clamp(3.75rem, 7vw, 7.25rem);
+}
+
+.j-lead {
+  font-size: clamp(1.02rem, 1.2vw, 1.2rem);
+  font-weight: 500;
+  line-height: 1.38;
+  text-wrap: pretty;
+}
+
+.j-body {
+  margin-top: 0.85rem;
+  color: var(--j-muted);
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.j-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.4rem;
+  list-style: none;
+}
+
+.j-tags li {
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--j-line);
+  border-radius: 999px;
+  color: var(--j-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------------------------
+   Actions */
+
+.j-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem 1.5rem;
+  margin-top: 1.75rem;
+}
+
+.j-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3rem;
+  padding: 0 1.4rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 0.3s var(--j-ease),
+    border-color 0.3s var(--j-ease),
+    color 0.3s var(--j-ease),
+    transform 0.3s var(--j-ease);
+}
+
+.j-btn--primary {
+  background: var(--j-accent);
+  color: var(--j-white);
+}
+
+.j-btn--ghost {
+  border-color: rgba(255, 255, 255, 0.45);
+  color: var(--j-text);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .j-btn:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Black text without the card's shadow on the white fill. */
+  .j-btn--primary:hover {
+    background: #ffffff;
+    color: var(--j-ink);
+    text-shadow: none;
+  }
+
+  .j-btn--ghost:hover {
+    border-color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+.j-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.j-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  color: var(--j-text);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.35);
+  text-underline-offset: 0.35em;
+  text-transform: uppercase;
+  transition: text-decoration-color 0.3s var(--j-ease);
+}
+
+.j-link span {
+  transition: transform 0.3s var(--j-ease);
+}
+
+.j-link:hover {
+  text-decoration-color: var(--j-accent);
+}
+
+.j-link:hover span {
+  transform: translateX(0.25rem);
+}
+
+.journey a:focus-visible,
+.journey button:focus-visible,
+.journey summary:focus-visible,
+.journey-rail a:focus-visible,
+.lead-chip input:focus-visible + span {
+  outline: 2px solid var(--j-accent);
+  outline-offset: 3px;
+}
+
+/* ---------------------------------------------------------------------------
+   Stage 3: proof */
+
+.j-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0.5rem 0 1.75rem;
+}
+
+.j-stat {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 0.4rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--j-line);
+}
+
+.j-stat dd {
+  margin: 0;
+  color: var(--j-accent);
+  font-family: var(--f-h);
+  font-size: clamp(3.5rem, 5vw, 5rem);
+  font-weight: 700;
+  line-height: 0.85;
+  font-variant-numeric: tabular-nums;
+}
+
+.j-stat dt {
+  color: var(--j-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.j-cases-title {
+  margin-bottom: 0.7rem;
+  color: var(--j-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+
+.j-card .j-cases-title {
+  text-transform: uppercase;
+}
+
+.j-cases ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.j-cases a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.5rem;
+  padding: 0 0.95rem;
+  border: 1px solid var(--j-line);
+  border-radius: 999px;
+  color: var(--j-text);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    background 0.3s var(--j-ease),
+    border-color 0.3s var(--j-ease),
+    color 0.3s var(--j-ease);
+}
+
+.j-cases a:hover,
+.j-cases a:focus-visible {
+  border-color: var(--j-accent);
+  background: var(--j-accent);
+  color: var(--j-ink);
+}
+
+/* ---------------------------------------------------------------------------
+   Stage 4: lead capture */
+
+.lead-form {
+  display: grid;
+  gap: 1.1rem;
+  margin-top: 1.5rem;
+}
+
+/* display: grid above would otherwise override the hidden attribute. */
+.lead-form[hidden] {
+  display: none;
+}
+
+.lead-form[aria-busy="true"] {
+  opacity: 0.75;
+}
+
+.lead-honey {
+  display: none;
+}
+
+.lead-services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  border: 0;
+}
+
+.lead-services legend,
+.lead-field label {
+  display: block;
+  margin-bottom: 0.6rem;
+  color: var(--j-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lead-services legend span,
+.lead-field label span {
+  margin-left: 0.35rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.lead-chip {
+  position: relative;
+  cursor: pointer;
+}
+
+.lead-chip input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.lead-chip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0 1rem;
+  border: 1px solid var(--j-line);
+  border-radius: 999px;
+  color: var(--j-text);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition:
+    background 0.25s var(--j-ease),
+    border-color 0.25s var(--j-ease),
+    color 0.25s var(--j-ease);
+}
+
+.lead-chip:hover span {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.lead-chip input:checked + span {
+  border-color: var(--j-accent);
+  background: var(--j-accent);
+  color: var(--j-white);
+}
+
+.lead-field input,
+.lead-field textarea {
+  display: block;
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 0.75rem;
+  outline: none;
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--j-text);
+  font: inherit;
+  /* 16px minimum stops iOS from zooming into the field. */
+  font-size: 1rem;
+  line-height: 1.4;
+  -webkit-user-select: text;
+  user-select: text;
+  transition:
+    border-color 0.25s var(--j-ease),
+    background 0.25s var(--j-ease);
+}
+
+.lead-field textarea {
+  min-height: 5.5rem;
+  resize: vertical;
+}
+
+.lead-field input::placeholder,
+.lead-field textarea::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.lead-field input:focus,
+.lead-field textarea:focus {
+  border-color: var(--j-accent);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.lead-field input[aria-invalid="true"] {
+  border-color: #ff7a6b;
+}
+
+.lead-error {
+  margin-top: 0.5rem;
+  color: #ffb4a8;
+  font-size: 0.82rem;
+  line-height: 1.3;
+}
+
+.lead-submit {
+  justify-content: space-between;
+  width: 100%;
+  min-height: 3.5rem;
+  font-size: 0.9rem;
+}
+
+.lead-submit:disabled {
+  cursor: progress;
+}
+
+.lead-legal,
+.lead-status {
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.lead-legal {
+  margin-top: -0.4rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.lead-status:empty {
+  display: none;
+}
+
+.lead-status {
+  color: #ffd2b0;
+}
+
+.lead-success {
+  margin-top: 1.5rem;
+  outline: none;
+}
+
+.lead-success .j-title {
+  color: var(--j-accent);
+}
+
+/* Success tick (injected by js/lead-form.js): the ring draws, the check
+   follows, then the copy rises in under it. */
+.lead-tick {
+  display: block;
+  width: 4.25rem;
+  height: 4.25rem;
+  margin-bottom: 1.1rem;
+  fill: none;
+  stroke: var(--j-accent);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: lead-tick-pop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.lead-tick circle,
+.lead-tick path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.lead-tick circle {
+  animation: lead-tick-draw 0.6s cubic-bezier(0.65, 0, 0.35, 1) 0.1s forwards;
+}
+
+.lead-tick path {
+  stroke-width: 3.5;
+  animation: lead-tick-draw 0.35s cubic-bezier(0.33, 1, 0.68, 1) 0.6s forwards;
+}
+
+.lead-success > :not(.lead-tick) {
+  animation: lead-success-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.lead-success > :nth-child(2) {
+  animation-delay: 0.55s;
+}
+
+.lead-success > :nth-child(3) {
+  animation-delay: 0.65s;
+}
+
+@keyframes lead-tick-pop {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+}
+
+@keyframes lead-tick-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes lead-success-rise {
+  from {
+    transform: translateY(0.9rem);
+    opacity: 0;
+  }
+}
+
+.j-faq {
+  margin-top: 1.75rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--j-line);
+}
+
+.j-faq summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 2.5rem;
+  color: var(--j-text);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  list-style: none;
+  cursor: pointer;
+}
+
+.j-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.j-faq summary::after {
+  content: "+";
+  color: var(--j-accent);
+  font-size: 1.2rem;
+  transition: transform 0.3s var(--j-ease);
+}
+
+.j-faq[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.j-faq p,
+.j-faq dd {
+  color: var(--j-muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.j-faq p {
+  margin: 0.6rem 0 1rem;
+}
+
+.j-faq dl {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.j-faq dt {
+  margin-bottom: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.j-faq dd {
+  margin: 0;
+}
+
+.j-faq a {
+  color: inherit;
+  text-underline-offset: 0.25em;
+}
+
+/* ---------------------------------------------------------------------------
+   Lead form modal (js/lead-modal.js): the contact card, over a dimmed page.
+   No blur on the backdrop: the glass card must refract the sharp scene.
+   Reuses .j-card / .j-card-inner and the lead form styles above. */
+
+.lead-modal {
+  width: min(35rem, calc(100% - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  color: var(--j-text);
+}
+
+.lead-modal::backdrop {
+  background: rgba(4, 6, 16, 0.62);
+}
+
+/* Lock the page behind while the modal is open. */
+html.lead-modal-open {
+  overflow: hidden;
+}
+
+.lead-modal .lead-modal-card {
+  position: relative;
+  top: auto;
+  bottom: auto;
+  width: 100%;
+  max-width: none;
+}
+
+.lead-modal .j-card-inner {
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* Darker than the journey cards: the page behind is already dimmed and
+     the form needs steady contrast. */
+  background-color: rgba(10, 12, 24, 0.35);
+}
+
+/* Phones with the keyboard up (js/lead-modal.js): pin the card to the top
+   of the visible area above the keyboard, so the page never has to move. */
+.lead-modal.is-keyboard {
+  top: var(--lead-vv-top);
+  bottom: auto;
+  margin-top: 16px;
+  max-height: calc(var(--lead-vv-height) - 32px);
+}
+
+.lead-modal.is-keyboard .j-card-inner {
+  max-height: calc(var(--lead-vv-height) - 32px);
+}
+
+/* Focused on open (js/lead-modal.js) only so screen readers start here. */
+.lead-modal .j-title:focus {
+  outline: none;
+}
+
+.lead-modal .j-title {
+  padding-right: 3rem;
+}
+
+/* Two classes: .liquid-glass > * would otherwise make it position: relative. */
+.lead-modal .lead-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--j-line);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--j-text);
+  cursor: pointer;
+  transition:
+    background 0.3s var(--j-ease),
+    border-color 0.3s var(--j-ease),
+    transform 0.3s var(--j-ease);
+}
+
+.lead-modal-close svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lead-modal-close:hover {
+    border-color: var(--j-accent);
+    background: var(--j-accent);
+    transform: rotate(90deg);
+  }
+}
+
+.lead-modal a:focus-visible,
+.lead-modal button:focus-visible {
+  outline: 2px solid var(--j-accent);
+  outline-offset: 3px;
+}
+
+/* Enter / exit. Only transform on the dialog: fading the glass would blank
+   its backdrop filter until the fade ends. It is not on the card because
+   keyboard focus inside a .j-card cancels card transforms. */
+.lead-modal[open] {
+  animation: lead-modal-in 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lead-modal[open]::backdrop {
+  animation: lead-backdrop-in 0.6s ease;
+}
+
+.lead-modal.is-closing {
+  animation: lead-modal-out 0.45s cubic-bezier(0.7, 0, 0.84, 0) forwards;
+}
+
+.lead-modal.is-closing::backdrop {
+  animation: lead-backdrop-out 0.5s ease-in forwards;
+}
+
+@keyframes lead-modal-in {
+  from {
+    transform: translateY(6rem) scale(0.94) rotate(1.5deg);
+  }
+}
+
+@keyframes lead-modal-out {
+  to {
+    transform: translateY(4rem) scale(0.95) rotate(-1deg);
+    visibility: hidden;
+  }
+}
+
+@keyframes lead-backdrop-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes lead-backdrop-out {
+  to {
+    opacity: 0;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Compact narrative: phones, portrait tablets and narrow windows.
+   Must match compactQuery in js/home-journey.js. */
+
+@media (max-width: 900px), (max-aspect-ratio: 4/5) {
+  .j-beat,
+  .j-beat[data-side="right"] {
+    align-items: flex-end;
+    justify-content: center;
+    min-height: 115vh;
+    min-height: 115svh;
+    padding: 6rem 16px calc(1rem + env(safe-area-inset-bottom));
+  }
+
+  .j-stage--contact .j-beat {
+    align-items: flex-end;
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
+  /* Cards pin to the bottom edge; the scene owns the top of the screen. */
+  .j-card {
+    top: auto;
+    bottom: calc(1rem + env(safe-area-inset-bottom));
+    width: 100%;
+    max-width: 34rem;
+  }
+
+  .j-card-inner {
+    padding: 1.4rem 1.25rem 1.5rem;
+    border-radius: 1.25rem;
+    transform: none;
+  }
+
+  .j-title {
+    margin: 0.7rem 0 1rem;
+    font-size: clamp(3rem, 13.5vw, 4.75rem);
+  }
+
+  .j-title--xl {
+    font-size: clamp(3rem, 12.5vw, 4.75rem);
+  }
+
+  .j-lead {
+    font-size: 1rem;
+  }
+
+  .j-body {
+    font-size: 0.9rem;
+  }
+
+  .j-tags {
+    margin-top: 1.1rem;
+  }
+
+  .j-actions {
+    gap: 0.6rem 1.25rem;
+    margin-top: 1.4rem;
+  }
+
+  .j-actions .j-btn {
+    flex: 1 1 12rem;
+  }
+
+  .j-stats {
+    gap: 0.75rem;
+  }
+
+  .j-stat dd {
+    font-size: clamp(2.75rem, 12vw, 3.5rem);
+  }
+
+  .j-stat dt {
+    font-size: 0.66rem;
+  }
+
+  .case-pins {
+    display: none;
+  }
+
+  /* Thin chapter progress along the top edge. */
+  .journey-rail {
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    transform: none;
+    pointer-events: none;
+  }
+
+  .journey-rail.is-visible {
+    transform: none;
+    pointer-events: none;
+  }
+
+  .journey-rail ol {
+    flex-direction: row;
+    gap: 3px;
+    padding: 0 3px;
+  }
+
+  .journey-rail li {
+    flex: 1;
+  }
+
+  .journey-rail a {
+    display: block;
+    min-height: 0;
+    height: 3px;
+    border-radius: 0 0 2px 2px;
+    background: rgba(255, 255, 255, 0.35);
+    font-size: 0;
+  }
+
+  .journey-rail a::after,
+  .journey-rail-index,
+  .journey-rail-label {
+    display: none;
+  }
+
+  .journey-rail a.is-active {
+    background: var(--j-accent);
+  }
+}
+
+@media (max-width: 380px) {
+  .j-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .j-stat {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: baseline;
+    gap: 1rem;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .case-pin::before {
+    animation: none;
+  }
+
+  .shooting-star {
+    display: none;
+  }
+
+  .experience-moon::before {
+    animation: none;
+  }
+
+  .j-card-inner,
+  .j-btn,
+  .journey-rail,
+  .lead-modal-close {
+    transition: none;
+  }
+
+  .j-card.is-modal-away .j-card-inner {
+    transition: none;
+  }
+
+  .lead-modal[open],
+  .lead-modal[open]::backdrop {
+    animation: none;
+  }
+
+  .lead-tick,
+  .lead-success > :not(.lead-tick) {
+    animation: none;
+  }
+
+  .lead-tick circle,
+  .lead-tick path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}

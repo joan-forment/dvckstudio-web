@@ -1,0 +1,36 @@
+{
+  "name": "dvckstudio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "DvckStudio — web del estudio creativo digital (Vite + Three.js + GSAP).",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "host": "vite --host",
+    "optimize:models": "npx --yes @gltf-transform/cli draco _source-assets/models/home.glb public/home/home.glb && npx --yes @gltf-transform/cli draco _source-assets/models/pato.glb public/home/pato.glb",
+    "blog": "node scripts/blog/cli.mjs status",
+    "blog:publish": "node scripts/blog/cli.mjs publish",
+    "blog:unpublish": "node scripts/blog/cli.mjs unpublish",
+    "blog:draft": "node scripts/blog/cli.mjs draft",
+    "blog:studio": "node scripts/blog/studio.mjs",
+    "blog:propose": "node scripts/blog/cli.mjs propose",
+    "blog:release": "node scripts/blog/cli.mjs release",
+    "blog:deploy": "node scripts/blog/cli.mjs deploy",
+    "web:subir": "npm run build && node scripts/blog/cli.mjs deploy"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gsap": "^3.15.0",
+    "lenis": "1.3.15",
+    "marked": "^18.0.14",
+    "three": "^0.183.2",
+    "vite": "^8.0.8",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "basic-ftp": "^6.2.1"
+  }
+}

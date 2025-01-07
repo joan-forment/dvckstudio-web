@@ -1,0 +1,362 @@
+:root {
+  /* Desktop CTA position: increase to move the block higher. */
+  --home-cta-desktop-bottom: 5.5rem;
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+  /* The sky now lives on the pinned stage (.experience-sky in
+     home-journey.css) so it stays behind the whole scroll journey. */
+  background: transparent;
+  text-align: center;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.home-model-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: transparent;
+}
+
+.newsletter-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(22rem, 0.85fr);
+  gap: 4rem;
+  align-items: end;
+  min-height: 70svh;
+  padding: 8rem 2.5rem;
+  background: #ff8222;
+  color: #ffffff;
+}
+
+.newsletter-cta:not(.newsletter-cta-top) {
+  display: none;
+}
+
+.newsletter-cta-overlay {
+  position: absolute;
+  top: auto;
+  bottom: var(--home-cta-desktop-bottom);
+  left: 2.5rem;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.8fr);
+  gap: 3rem;
+  width: calc(100% - 5rem);
+  min-height: auto;
+  padding: 0;
+  background: transparent;
+  color: white;
+  transform: none;
+  text-align: left;
+}
+
+.newsletter-cta-overlay h2 {
+  max-width: 7ch;
+  margin-bottom: 1.5rem;
+  font-size: clamp(6rem, 15vw, 15rem);
+}
+
+.hero .newsletter-cta-overlay {
+  display: grid;
+}
+
+/* Hero CTA: one clear liquid glass button (js/liquid-glass.js) that leads to
+   the lead form at the end of the journey. */
+.hero-cta-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-self: end;
+  gap: 1rem;
+}
+
+.hero-cta-glass {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 1.25rem;
+  min-height: 4.5rem;
+  padding: 0.6rem 0.6rem 0.6rem 2rem;
+  border-radius: 999px;
+  color: var(--d);
+  font-family: var(--f-nm);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.hero-cta-glass-icon {
+  display: grid;
+  place-items: center;
+  width: 3.3rem;
+  height: 3.3rem;
+  border-radius: 50%;
+  background: var(--l);
+  box-shadow: 0 6px 18px rgba(255, 130, 34, 0.45);
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.hero-cta-glass-icon svg {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero-cta-glass:hover {
+    transform: translateY(-2px) scale(1.02);
+  }
+
+  .hero-cta-glass:hover .hero-cta-glass-icon {
+    transform: rotate(-45deg);
+  }
+}
+
+.hero-cta-glass:active {
+  transform: scale(0.98);
+}
+
+.hero-cta-glass:focus-visible {
+  outline: 2px solid var(--d);
+  outline-offset: 4px;
+}
+
+.newsletter-kicker {
+  display: none;
+  margin-bottom: 1.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+}
+
+.newsletter-cta h2 {
+  max-width: 10ch;
+  margin-bottom: 2rem;
+}
+
+.newsletter-description {
+  max-width: 34rem;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  text-transform: none;
+}
+
+/* Hero exit while the lead modal is open (js/lead-modal.js): words become
+   masks and the letters slide out of them. The split stays after the first
+   open. Extra room (cancelled by the negative margin) so accents on capitals,
+   descenders and the tilted letters are not clipped before they move; the
+   masks let the pointer through to the scene behind. */
+.hero-exit-word-mask {
+  display: inline-block;
+  padding: 0.22em 0.1em 0.1em;
+  margin: -0.22em -0.1em -0.1em;
+  pointer-events: none;
+}
+
+.hero-exit-word,
+.hero-exit-char {
+  display: inline-block;
+  will-change: transform;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.hero-particle-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-particle-canvas #particle-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hero-particle-canvas .particle-header {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0.08;
+  pointer-events: none;
+  transform-origin: center;
+}
+
+.hero-particle-canvas .particle-header h1 {
+  margin: 0;
+  color: white;
+  font-size: clamp(5rem, 19vw, 19rem);
+  line-height: 0.8;
+  letter-spacing: -0.08em;
+  white-space: nowrap;
+}
+
+.hero .hero-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  padding: 2.5rem;
+  color: white;
+}
+
+.hero .hero-footer .hero-footer-col {
+  display: flex;
+  gap: 5rem;
+}
+
+@media (max-width: 1000px) {
+  .newsletter-cta {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    min-height: auto;
+    padding: 6rem 2rem;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .newsletter-cta-overlay {
+    top: 6rem;
+    bottom: auto;
+    left: 50%;
+    grid-template-columns: 1fr;
+    width: min(88%, 28rem);
+    gap: 1.5rem;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+
+  .newsletter-cta-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .newsletter-cta h2 {
+    max-width: 100%;
+  }
+
+  .newsletter-description {
+    max-width: 28rem;
+  }
+
+  .hero-cta-actions {
+    align-items: center;
+    justify-self: center;
+    gap: 0.6rem;
+  }
+
+  .hero .hero-footer {
+    padding: 2rem;
+  }
+
+  .hero .hero-footer .hero-footer-col {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    /* lvh: ocupa toda la pantalla aunque Safari oculte su barra. */
+    height: 100vh;
+    height: 100lvh;
+    min-height: 100svh;
+  }
+
+  .hero .hero-footer {
+    /* Mantiene el footer visible encima de la barra de Safari. */
+    bottom: calc(100lvh - 100svh);
+  }
+
+  .newsletter-cta-overlay {
+    top: 2.4rem;
+    width: min(88%, 24rem);
+    gap: 0.85rem;
+  }
+
+  .newsletter-cta-overlay h2 {
+    max-width: none;
+    margin-bottom: 0.25rem;
+    font-size: 18vw !important;
+    letter-spacing: 0;
+    line-height: 0.95;
+    white-space: nowrap;
+    /* drop-shadow, not text-shadow: once js/lead-modal.js splits the text,
+       one shadow for the whole block stays seamless; per-letter shadows
+       would overlap into bands. */
+    filter: drop-shadow(0 0.28rem 1rem rgba(0, 0, 0, 0.58));
+  }
+
+  .newsletter-description {
+    max-width: 21rem;
+    font-size: 0.82rem;
+    line-height: 1.25;
+    filter: drop-shadow(0 0.2rem 0.75rem rgba(0, 0, 0, 0.54));
+  }
+
+  .hero-cta-glass {
+    min-height: 3.6rem;
+    gap: 1rem;
+    padding: 0.4rem 0.4rem 0.4rem 1.4rem;
+    font-size: 0.88rem;
+    letter-spacing: 0.04em;
+  }
+
+  .hero-cta-glass-icon {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+
+  .hero .hero-footer {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .hero .hero-footer p {
+    font-size: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-cta-glass,
+  .hero-cta-glass-icon {
+    transition: none;
+  }
+}

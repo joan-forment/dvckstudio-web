@@ -1,0 +1,200 @@
+{
+  "date": "2026-10-09",
+  "proposals": [
+    {
+      "title": "ChatGPT ya no solo escribe: GPT-6 te monta apps en el chat",
+      "slug": "chatgpt-gpt-6-intelligent-ui-negocios",
+      "category": "ia",
+      "kind": "actualidad",
+      "angle": "Desde el 7 de octubre, ChatGPT responde con mapas, calculadoras, formularios y botones dentro del chat (Intelligent UI), y los usuarios gratis también lo tienen desde el 8. Contamos qué hace de verdad, cómo probarlo en 2 minutos y por qué la calculadora de tu web ahora compite con una que ChatGPT se saca de la manga.",
+      "why": "Es el cambio más visible de ChatGPT en meses, llega a todos los planes y lo está probando todo el mundo esta semana.",
+      "keyword": "GPT-6 ChatGPT",
+      "sources": [
+        {
+          "title": "OpenAI – GPT-6 for everyone",
+          "url": "https://openai.com/index/gpt-6-for-everyone/",
+          "date": "2026-10-07"
+        },
+        {
+          "title": "TestingCatalog – OpenAI rolls out GPT-6 with Intelligent UI in ChatGPT",
+          "url": "https://www.testingcatalog.com/openai-rolls-out-gpt-6-with-intelligent-ui-in-chatgpt/",
+          "date": "2026-10-07"
+        }
+      ]
+    },
+    {
+      "title": "Google lo deja claro: revisa a mano lo que escribe tu IA",
+      "slug": "google-contenido-ia-revisar-a-mano",
+      "category": "ia",
+      "kind": "actualidad",
+      "angle": "Google ha actualizado su guía sobre contenido generado con IA: dice que hay que revisar y verificar a mano todo antes de publicar, y la conecta con las pautas de sus evaluadores sobre contenido masivo y de poco esfuerzo. Además, el 8 de octubre terminó de desplegarse el spam update de septiembre. Explicamos qué sí y qué no puedes hacer con IA en tu web, con una lista de comprobación que incluye títulos, metadescripciones y textos alternativos.",
+      "why": "Es una actualización oficial del 1 de octubre y le toca a cualquiera que esté rellenando su web o su blog con ChatGPT.",
+      "keyword": "contenido generado con IA Google",
+      "sources": [
+        {
+          "title": "Google Search Central – Guidance on using generative AI content on your website",
+          "url": "https://developers.google.com/search/docs/fundamentals/using-gen-ai-content",
+          "date": "2026-10-01"
+        },
+        {
+          "title": "Google Search Central – Latest documentation updates",
+          "url": "https://developers.google.com/search/updates",
+          "date": "2026-10-08"
+        }
+      ]
+    },
+    {
+      "title": "Chrome ya abre JPEG XL: ¿adiós a WebP en las fotos de tu web?",
+      "slug": "chrome-jpeg-xl-webp-imagenes-web",
+      "category": "desarrollo",
+      "kind": "actualidad",
+      "angle": "Chrome 155 ya muestra imágenes JPEG XL. Google habla de entre un 30 y un 50 % menos de peso que JPEG y de poder convertir tus JPEG sin perder calidad. Contamos cuándo compensa frente a WebP y AVIF (fotos de producto y portfolios, sí; iconos, no), cómo servirlo con <picture> para no dejar fuera a nadie y si merece la pena rehacer tus imágenes ya.",
+      "why": "Después de años de culebrón (Chrome lo quitó en 2022), vuelve con la versión estable del 6 de octubre.",
+      "keyword": "JPEG XL",
+      "sources": [
+        {
+          "title": "Chrome for Developers – Shipping JPEG XL in Chrome",
+          "url": "https://developer.chrome.com/blog/jpeg-xl-in-chrome",
+          "date": "2026-10-06"
+        },
+        {
+          "title": "Chrome Platform Status – Chrome 155 release notes",
+          "url": "https://chromestatus.com/release-notes/155",
+          "date": "2026-10-06"
+        }
+      ]
+    },
+    {
+      "title": "Figma agent: la IA de Figma ya es oficial (y ahora cobra)",
+      "slug": "figma-agent-disponible-creditos-ia",
+      "category": "diseno",
+      "kind": "actualidad",
+      "angle": "El agente de Figma sale de la beta: busca archivos desde el chat, sigue unas pautas que le das sobre tu librería, edita imágenes eligiendo modelo y crea skills, también en el plan Starter. Desde el 6 de octubre consume créditos de IA. Contamos para qué sirve en un estudio pequeño, cómo enseñarle tu sistema de diseño y cuándo te sale más caro que hacerlo tú.",
+      "why": "Ya está disponible para todos desde el 6 de octubre y empieza a gastar créditos, así que cualquiera con Figma va a notarlo.",
+      "keyword": "Figma agent",
+      "sources": [
+        {
+          "title": "Figma – Release notes",
+          "url": "https://www.figma.com/release-notes/",
+          "date": "2026-10-06"
+        },
+        {
+          "title": "Figma Blog – 3 ways product designers use the Figma agent",
+          "url": "https://www.figma.com/blog/3-ways-product-designers-use-the-figma-agent/",
+          "date": "2026-10-06"
+        }
+      ]
+    },
+    {
+      "title": "Claude Haiku 5.5: un chatbot para tu tienda por céntimos",
+      "slug": "claude-haiku-5-5-chatbot-tienda",
+      "category": "ia",
+      "kind": "actualidad",
+      "angle": "Anthropic lanza Haiku 5.5, su modelo más rápido, pensado para atención al cliente en directo y tareas repetitivas, y de media un 75 % más barato de usar que Haiku 4.5 (0,10 $ por millón de tokens de entrada). Hacemos la cuenta de lo que cuesta de verdad un chatbot para una tienda pequeña, explicamos para qué sirve y para qué no, y recordamos que la ley obliga a avisar al cliente de que habla con una IA.",
+      "why": "Salió el 7 de octubre y baja tanto el precio de la IA para atender clientes que deja de ser cosa de empresas grandes.",
+      "keyword": "Claude Haiku 5.5",
+      "sources": [
+        {
+          "title": "Anthropic – Introducing Claude Haiku 5.5",
+          "url": "https://www.anthropic.com/claude-haiku-5-5",
+          "date": "2026-10-07"
+        }
+      ]
+    },
+    {
+      "title": "¿Tu web tiene que avisar de que usa IA? Lo que dice la ley",
+      "slug": "ley-ia-europea-avisar-web",
+      "category": "ia",
+      "kind": "guia",
+      "angle": "Desde el 2 de agosto de 2026 la Ley de IA europea obliga a avisar de que el cliente habla con un chatbot y a etiquetar los deepfakes y ciertos textos generados con IA. Explicamos qué afecta a una web normal (chatbot, fotos de producto, blog), qué no, cómo etiquetarlo sin espantar al cliente y de cuánto son las multas.",
+      "why": "Las obligaciones ya están en vigor y casi ningún dueño de negocio sabe si le tocan: la gente lo está buscando.",
+      "keyword": "ley de IA europea web",
+      "sources": [
+        {
+          "title": "Comisión Europea – Safer and more transparent AI",
+          "url": "https://commission.europa.eu/news-and-media/news/safer-and-more-transparent-ai-2026-08-02_en",
+          "date": "2026-08-02"
+        },
+        {
+          "title": "Comisión Europea – Code of Practice on marking and labelling AI-generated content",
+          "url": "https://digital-strategy.ec.europa.eu/en/news/commission-publishes-code-practice-marking-and-labelling-ai-generated-content",
+          "date": ""
+        }
+      ]
+    },
+    {
+      "title": "Nano Banana 2.1: infografías con IA que (casi) se leen",
+      "slug": "nano-banana-2-1-infografias-ia",
+      "category": "diseno",
+      "kind": "actualidad",
+      "angle": "Google estrena Nano Banana 2.1 en Gemini, AI Studio, Flow, Stitch y Google Ads, y saca pecho de infografías más fieles y personajes más coherentes de una imagen a otra. Su propia ficha técnica reconoce que la letra pequeña y los párrafos largos aún salen borrosos. Lo probamos con carteles e infografías de negocio y contamos dónde sí y dónde todavía no puede sustituir a un diseñador.",
+      "why": "Es el generador de imágenes del momento, se ha actualizado esta semana y ya está dentro de herramientas que usan pymes, como Google Ads.",
+      "keyword": "Nano Banana 2.1",
+      "sources": [
+        {
+          "title": "Google DeepMind – Nano Banana 2.1 model card",
+          "url": "https://deepmind.google/models/model-cards/nano-banana-2-1/",
+          "date": "2026-10-06"
+        }
+      ]
+    },
+    {
+      "title": "¿Tu web es lenta? Cómo saberlo en 5 minutos sin ser informático",
+      "slug": "como-saber-si-tu-web-es-lenta",
+      "category": "desarrollo",
+      "kind": "guia",
+      "angle": "Guía paso a paso con PageSpeed Insights: qué número mirar (y cuál ignorar), qué significan LCP, INP y CLS explicados con ejemplos de la vida real, la diferencia entre datos reales y de laboratorio, y las tres causas que más se repiten en webs de pymes.",
+      "why": "Se busca mucho y casi todas las respuestas que hay están escritas para desarrolladores.",
+      "keyword": "cómo saber si mi web es lenta",
+      "sources": [
+        {
+          "title": "Google – PageSpeed Insights",
+          "url": "https://pagespeed.web.dev/",
+          "date": ""
+        },
+        {
+          "title": "web.dev – Web Vitals",
+          "url": "https://web.dev/articles/vitals",
+          "date": ""
+        }
+      ]
+    },
+    {
+      "title": "«Iniciar sesión con ChatGPT»: ¿lo quieres en tu web?",
+      "slug": "iniciar-sesion-con-chatgpt-web",
+      "category": "desarrollo",
+      "kind": "actualidad",
+      "angle": "En su DevDay, OpenAI anunció «Sign in with ChatGPT» para entrar en otras webs con tu cuenta de ChatGPT, y plugins que las webs pueden ofrecer dentro de ChatGPT. Explicamos qué es, en qué se diferencia de entrar con Google, qué datos comparte y cuándo le conviene a una tienda o a una app pequeña.",
+      "why": "Lo anunció el 29 de septiembre y OpenAI dice tener 1.200 millones de usuarios semanales: muchos negocios se van a preguntar si deben ofrecerlo.",
+      "keyword": "iniciar sesión con ChatGPT",
+      "sources": [
+        {
+          "title": "OpenAI Developer Community – DevDay 2026 announcements and developer resources",
+          "url": "https://community.openai.com/t/devday-2026-announcements-and-developer-resources/1402006",
+          "date": "2026-09-29"
+        }
+      ]
+    },
+    {
+      "title": "Qué es un sistema de diseño y si tu marca necesita uno",
+      "slug": "que-es-un-sistema-de-diseno",
+      "category": "diseno",
+      "kind": "guia",
+      "angle": "Qué es un sistema de diseño (colores, tipografías, componentes y reglas) explicado sin jerga, en qué se diferencia de un manual de marca y cuándo le compensa a un negocio pequeño. Incluye por qué ahora importa más: los agentes de IA de Figma y compañía lo usan para no inventarse tu marca.",
+      "why": "Es una búsqueda que no pasa de moda, y la llegada de la IA al diseño la ha vuelto a poner de actualidad.",
+      "keyword": "qué es un sistema de diseño",
+      "sources": [
+        {
+          "title": "Figma Blog – Design Systems 101: What is a design system",
+          "url": "https://www.figma.com/blog/design-systems-101-what-is-a-design-system/",
+          "date": ""
+        },
+        {
+          "title": "Figma Help Center – A design system author's guide to the Figma agent",
+          "url": "https://help.figma.com/hc/en-us/articles/43709856614935-Introduction-A-design-system-author-s-guide-to-the-Figma-agent",
+          "date": ""
+        }
+      ]
+    }
+  ]
+}
